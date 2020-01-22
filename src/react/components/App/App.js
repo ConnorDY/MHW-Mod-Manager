@@ -1,24 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  Checkbox,
-  Grid,
-  Table,
-  TableBody,
-  TableContainer,
-  TableCell,
-  TableHead,
-  TableRow,
-  TableSortLabel
-} from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 
+import ModTable from '../ModTable';
 import { readZips } from '../../mod-reader';
 import './App.scss';
-import ModRows from '../ModRows/ModRows';
 
 function App() {
   const [zips, setZips] = useState([]);
   const [selected, setSelected] = useState(new Set());
+
+  function updateSelected() {
+    setSelected(new Set(selected));
+  }
 
   async function loadMods() {
     setZips(await readZips());
@@ -33,13 +26,12 @@ function App() {
       }
     }
 
-    setSelected(selected);
+    updateSelected();
   }
 
   function onSelectOne(index) {
     selected.has(index) ? selected.delete(index) : selected.add(index);
-    setSelected(selected);
-    console.log(selected);
+    updateSelected();
   }
 
   useEffect(() => {
@@ -49,52 +41,21 @@ function App() {
   return (
     <>
       {/* Toolbar */}
-      <Grid container spacing={2}>
+      <Grid container id="toolbar">
         <Grid item>
           <Button onClick={loadMods}>Refresh</Button>
         </Grid>
       </Grid>
 
       {/* Mod List */}
-      <Grid container>
+      <Grid container id="mod-table">
         <Grid item xs={12}>
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      indeterminate={
-                        selected.size > 0 && selected.size < zips.length
-                      }
-                      checked={selected.size === zips.length}
-                      onChange={onSelectAll}
-                    />
-                  </TableCell>
-
-                  <TableCell>
-                    <TableSortLabel>Active?</TableSortLabel>
-                  </TableCell>
-
-                  <TableCell>
-                    <TableSortLabel>Filename</TableSortLabel>
-                  </TableCell>
-
-                  <TableCell>
-                    <TableSortLabel># of Files</TableSortLabel>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-
-              <TableBody>
-                <ModRows
-                  onSelectOne={onSelectOne}
-                  selected={selected}
-                  zips={zips}
-                />
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <ModTable
+            onSelectAll={onSelectAll}
+            onSelectOne={onSelectOne}
+            selected={selected}
+            zips={zips}
+          />
         </Grid>
       </Grid>
     </>

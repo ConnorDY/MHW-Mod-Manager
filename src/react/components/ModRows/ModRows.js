@@ -1,6 +1,8 @@
 import React from 'react';
 import { Checkbox, TableCell, TableRow } from '@material-ui/core';
-import { Check as CheckIcon } from '@material-ui/icons';
+import { CheckCircleOutline as CheckIcon } from '@material-ui/icons';
+
+import './ModRows.scss';
 
 export default function ModRows({ onSelectOne, selected, zips }) {
   return zips.map(([name, zip], index) => {
@@ -12,7 +14,9 @@ export default function ModRows({ onSelectOne, selected, zips }) {
           <Checkbox checked={active} onChange={() => onSelectOne(index)} />
         </TableCell>
 
-        <TableCell>{active ? <CheckIcon /> : <></>}</TableCell>
+        <TableCell className="cell-active" padding="checkbox">
+          {active ? <CheckIcon /> : <></>}
+        </TableCell>
 
         <TableCell>{name}</TableCell>
 

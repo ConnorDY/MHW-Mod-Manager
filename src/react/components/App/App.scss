@@ -1,0 +1,28 @@
+$header-height: 52px;
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+#toolbar {
+  width: 100%;
+  height: $header-height;
+}
+
+// make table header sticky:
+#mod-table {
+  height: calc(100% - #{$header-height});
+
+  > .MuiGrid-root {
+    height: 100%;
+
+    > #mod-table-container {
+      height: 100%;
+    }
+  }
+}
