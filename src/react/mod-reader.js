@@ -20,7 +20,5 @@ export async function readZips() {
     zips.push([zipPath, zip]);
   }
 
-  console.log(zips);
-
   return zips;
 }

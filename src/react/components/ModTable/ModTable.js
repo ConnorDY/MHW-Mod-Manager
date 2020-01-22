@@ -12,7 +12,13 @@ import {
 
 import ModRows from '../ModRows';
 
-export default function ModTable({ onSelectAll, onSelectOne, selected, zips }) {
+export default function ModTable({
+  active,
+  onSelectAll,
+  onSelectOne,
+  selected,
+  zips
+}) {
   return (
     <TableContainer id="mod-table-container">
       <Table stickyHeader>
@@ -43,7 +49,12 @@ export default function ModTable({ onSelectAll, onSelectOne, selected, zips }) {
 
         {/* Body */}
         <TableBody>
-          <ModRows onSelectOne={onSelectOne} selected={selected} zips={zips} />
+          <ModRows
+            active={active}
+            onSelectOne={onSelectOne}
+            selected={selected}
+            zips={zips}
+          />
         </TableBody>
       </Table>
     </TableContainer>

@@ -10,11 +10,21 @@ body,
 }
 
 #toolbar {
-  width: 100%;
+  display: table;
   height: $header-height;
+  padding: 0 8px;
+
+  > .MuiGrid-item {
+    display: table-cell;
+    vertical-align: middle;
+
+    > button {
+      margin: 0 4px;
+    }
+  }
 }
 
-// make table header sticky:
+// make table header sticky
 #mod-table {
   height: calc(100% - #{$header-height});
 
