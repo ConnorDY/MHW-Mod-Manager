@@ -1,9 +1,6 @@
 #mods-table-container {
   // expanded row
   .mod-row-expanded {
-    transition-property: opacity;
-    transition-timing-function: ease-in;
-
     > .files-label {
       font-weight: bold;
       vertical-align: top;
@@ -21,11 +18,11 @@
 
   // expanded row animations
   .expand-enter,
-  .expand-leave.expand-leave-active {
+  .expand-exit.expand-exit-active {
     opacity: 0;
   }
 
-  .expand-leave,
+  .expand-exit,
   .expand-enter.expand-enter-active {
     opacity: 1;
   }

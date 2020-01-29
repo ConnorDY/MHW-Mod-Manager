@@ -18,7 +18,7 @@ export default function ExpandedRow({ files, expanded, zipIndex }) {
       <TableRow
         className="mod-row-expanded"
         key="expanded-row"
-        style={{ transitionDuration: `${expandTime}ms` }}
+        style={{ transition: `opacity ${expandTime}ms ease-in` }}
       >
         <TableCell></TableCell>
 
