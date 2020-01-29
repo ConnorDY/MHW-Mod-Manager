@@ -5,7 +5,7 @@ import './ExpandedRow.scss';
 
 export default function ExpandedRow({ files, zipIndex }) {
   return (
-    <TableRow key="expanded-row">
+    <TableRow className="mod-row-expanded" key="expanded-row">
       <TableCell></TableCell>
 
       <TableCell className="files-label">Files:</TableCell>

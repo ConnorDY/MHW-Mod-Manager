@@ -62,7 +62,6 @@ export default function ModRows({
 
         {/* Expanded Row */}
         <ReactCSSTransitionGroup
-          className="mod-row-expanded"
           component={({ children }) => {
             const childrenArray = React.Children.toArray(children);
             return childrenArray[0] || null;
