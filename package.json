@@ -1,15 +1,24 @@
 {
   "name": "mhw-mod-manager",
   "version": "0.1.0",
-  "author": "Connor Younglund",
+  "author": {
+    "name": "Connor Younglund",
+    "email": "cdy@airmail.cc",
+    "url": "https://github.com/ConnorDY"
+  },
   "homepage": "./",
+  "main": "src/electron/starter.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "postinstall": "electron-builder install-app-deps",
     "electron": "electron ./src/electron/starter.js",
-    "electron-dev": "cross-env DEV=true npm run electron"
+    "electron-dev": "cross-env DEV=true npm run electron",
+    "preelectron-pack": "npm run build",
+    "electron-pack:windows": "electron-builder build -w",
+    "electron-pack:mac": "electron-builder build -m"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -19,13 +28,26 @@
     "singleQuote": true,
     "tabWidth": 2
   },
+  "build": {
+    "appId": "link.cdy.mhw-mod-manager",
+    "copyright": "Copyright © 2020 ${author}",
+    "extends": null,
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "src/electron/*.js"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "productName": "MHW Mod Manager"
+  },
   "dependencies": {
     "@material-ui/core": "^4.8.3",
     "@material-ui/icons": "^4.5.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
-    "electron": "^7.1.9",
     "jszip": "^3.2.2",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
@@ -36,6 +58,8 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.0",
+    "electron": "^7.1.10",
+    "electron-builder": "^22.3.2",
     "prettier": "^1.19.1"
   },
   "browserslist": {
