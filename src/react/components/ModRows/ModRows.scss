@@ -1,5 +1,24 @@
-.cell-active > svg {
-  display: block;
-  margin: auto;
-  color: green;
+#mod-table-container {
+  .cell-active > svg {
+    display: block;
+    margin: auto;
+    color: green;
+  }
+
+  .cell-expand > svg {
+    display: block;
+    margin: auto;
+  }
+
+  .mod-row[aria-expanded='true'] > td {
+    border-bottom: none;
+  }
+
+  .mod-row-expanded {
+    display: none;
+
+    &[aria-expanded='true'] {
+      display: table-row;
+    }
+  }
 }

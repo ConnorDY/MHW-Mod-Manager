@@ -2,11 +2,11 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
 
-const { createModsDirectory } = require('./util');
+const { createModsDirectory } = require('./utils');
 
 let window;
 
-function createWindow() {
+async function createWindow() {
   createModsDirectory();
 
   window = new BrowserWindow({

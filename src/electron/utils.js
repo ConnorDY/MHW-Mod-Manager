@@ -14,4 +14,6 @@ function createModsDirectory() {
   console.log('Mods directory created.');
 }
 
-module.exports = { createModsDirectory };
+module.exports = {
+  createModsDirectory
+};

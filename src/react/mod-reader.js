@@ -5,7 +5,7 @@ const modsDir = 'mods';
 
 export async function readZips() {
   const items = fs.readdirSync(modsDir);
-  const zipPaths = items.filter(item =>
+  const zipPaths = items.filter((item) =>
     /^.*\.(zip|rar|7z)$/.test(item.toLowerCase())
   );
 
@@ -17,7 +17,11 @@ export async function readZips() {
     const data = await readFile(path.join(modsDir, zipPath));
     await zip.loadAsync(data);
 
-    zips.push([zipPath, zip]);
+    const files = Object.keys(zip.files).filter(
+      (filePath) => filePath.charAt(filePath.length - 1) !== '/'
+    );
+
+    zips.push([zip, zipPath, files]);
   }
 
   return zips;

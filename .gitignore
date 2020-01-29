@@ -24,3 +24,6 @@ yarn-error.log*
 
 # mods folder
 /mods
+
+# config
+config.json

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Checkbox,
   Table,
@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 
 import ModRows from '../ModRows';
+import './ModTable.scss';
 
 export default function ModTable({
   active,
@@ -19,13 +20,15 @@ export default function ModTable({
   selected,
   zips
 }) {
+  const [expanded, setExpanded] = useState();
+
   return (
     <TableContainer id="mod-table-container">
       <Table stickyHeader>
         {/* Header */}
         <TableHead>
           <TableRow>
-            <TableCell padding="checkbox">
+            <TableCell className="cell-header-checkbox" padding="checkbox">
               <Checkbox
                 indeterminate={selected.size > 0 && selected.size < zips.length}
                 checked={selected.size === zips.length}
@@ -33,17 +36,19 @@ export default function ModTable({
               />
             </TableCell>
 
-            <TableCell>
+            <TableCell className="cell-header-active">
               <TableSortLabel>Active?</TableSortLabel>
             </TableCell>
 
-            <TableCell>
+            <TableCell className="cell-header-filename">
               <TableSortLabel>Filename</TableSortLabel>
             </TableCell>
 
-            <TableCell>
+            <TableCell className="cell-header-num-files">
               <TableSortLabel># of Files</TableSortLabel>
             </TableCell>
+
+            <TableCell className="cell-header-expand"></TableCell>
           </TableRow>
         </TableHead>
 
@@ -51,6 +56,8 @@ export default function ModTable({
         <TableBody>
           <ModRows
             active={active}
+            expanded={expanded}
+            onExpand={setExpanded}
             onSelectOne={onSelectOne}
             selected={selected}
             zips={zips}

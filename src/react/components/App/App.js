@@ -3,13 +3,15 @@ import { Button, Grid } from '@material-ui/core';
 import { Refresh as RefreshIcon } from '@material-ui/icons';
 
 import ModTable from '../ModTable';
+import { getGameDirectoryFromBinPath, locateGameBinary } from '../../utils';
 import { readZips } from '../../mod-reader';
 import './App.scss';
 
 function App() {
-  const [zips, setZips] = useState([]);
-  const [selected, setSelected] = useState(new Set());
   const [active, setActive] = useState(new Set());
+  const [gameDir, setGameDir] = useState();
+  const [selected, setSelected] = useState(new Set());
+  const [zips, setZips] = useState([]);
 
   function updateSelected() {
     setSelected(new Set(selected));
@@ -50,8 +52,12 @@ function App() {
     updateActive();
   }
 
+  // on app start:
   useEffect(() => {
-    loadMods();
+    locateGameBinary().then((binPath) => {
+      setGameDir(getGameDirectoryFromBinPath(binPath));
+      loadMods();
+    });
   }, []);
 
   return (
@@ -62,10 +68,15 @@ function App() {
           <Button color="primary" onClick={onActivate} variant="contained">
             Activate
           </Button>
-
-          <Button color="secondary" onClick={loadMods} variant="contained">
+          <Button
+            color="secondary"
+            onClick={() => loadMods(gameDir)}
+            variant="contained"
+          >
             <RefreshIcon />
           </Button>
+
+          <div style={{ float: 'right' }}>Game Directory: {gameDir}</div>
         </Grid>
       </Grid>
 
