@@ -1,4 +1,18 @@
 #mod-table-container {
+  // rows
+  .mod-row.expanded > td {
+    border-bottom: none;
+  }
+
+  .mod-row-expanded {
+    display: none;
+
+    &.expanded {
+      display: table-row;
+    }
+  }
+
+  // cells
   .cell-active > svg {
     display: block;
     margin: auto;
@@ -8,17 +22,5 @@
   .cell-expand > svg {
     display: block;
     margin: auto;
-  }
-
-  .mod-row[aria-expanded='true'] > td {
-    border-bottom: none;
-  }
-
-  .mod-row-expanded {
-    display: none;
-
-    &[aria-expanded='true'] {
-      display: table-row;
-    }
   }
 }

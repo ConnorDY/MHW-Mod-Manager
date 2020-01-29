@@ -33,3 +33,10 @@ export async function locateGameBinary() {
 
   return binPath;
 }
+
+export function createClassString(...classes) {
+  return classes
+    .map((c) => (c ? c.trim() : c))
+    .filter((c) => c)
+    .join(' ');
+}

@@ -6,6 +6,7 @@ import {
   ExpandLess as ExpandLessIcon
 } from '@material-ui/icons';
 
+import { createClassString } from '../../utils';
 import './ModRows.scss';
 
 export default function ModRows({
@@ -21,7 +22,11 @@ export default function ModRows({
 
     return (
       <React.Fragment key={`zip-${zipIndex}`}>
-        <TableRow aria-expanded={isExpanded} className="mod-row">
+        {/* Mod Row */}
+        <TableRow
+          aria-expanded={isExpanded}
+          className={createClassString('mod-row', isExpanded ? 'expanded' : '')}
+        >
           <TableCell className="cell-checkbox" padding="checkbox">
             <Checkbox
               checked={selected.has(zipIndex)}
@@ -52,7 +57,13 @@ export default function ModRows({
           </TableCell>
         </TableRow>
 
-        <TableRow aria-expanded={isExpanded} className="mod-row-expanded">
+        {/* Expanded Row */}
+        <TableRow
+          className={createClassString(
+            'mod-row-expanded',
+            isExpanded ? 'expanded' : ''
+          )}
+        >
           <TableCell colSpan={5}>
             <ul>
               {files.map((file, fileIndex) => (
