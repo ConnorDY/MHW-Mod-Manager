@@ -11,9 +11,9 @@ import {
 } from '@material-ui/core';
 
 import ModRows from '../ModRows';
-import './ModTable.scss';
+import './ModsTable.scss';
 
-export default function ModTable({
+export default function ModsTable({
   active,
   onSelectAll,
   onSelectOne,
@@ -23,7 +23,7 @@ export default function ModTable({
   const [expanded, setExpanded] = useState();
 
   return (
-    <TableContainer id="mod-table-container">
+    <TableContainer id="mods-table-container">
       <Table stickyHeader>
         {/* Header */}
         <TableHead>

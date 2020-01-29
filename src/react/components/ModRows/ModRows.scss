@@ -4,28 +4,6 @@
     border-bottom: none;
   }
 
-  .mod-row-expanded {
-    display: none;
-
-    &.expanded {
-      display: table-row;
-    }
-
-    > .files-label {
-      font-weight: bold;
-      vertical-align: top;
-    }
-
-    > .files-list {
-      padding: 0;
-
-      ul {
-        padding: 0;
-        margin-left: 18px;
-      }
-    }
-  }
-
   // cells
   .cell-active > svg {
     display: block;

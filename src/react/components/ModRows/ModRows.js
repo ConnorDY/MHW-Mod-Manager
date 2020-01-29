@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Checkbox, TableCell, TableRow, IconButton } from '@material-ui/core';
 import {
   CheckCircle as ActiveIcon,
@@ -6,6 +7,7 @@ import {
   ExpandLess as ExpandLessIcon
 } from '@material-ui/icons';
 
+import ExpandedRow from '../ExpandedRow';
 import { createClassString } from '../../utils';
 import './ModRows.scss';
 
@@ -18,6 +20,7 @@ export default function ModRows({
   zips
 }) {
   return zips.map(([zip, name, files], zipIndex) => {
+    const expandTime = 175;
     const isExpanded = expanded === zipIndex;
 
     return (
@@ -58,24 +61,18 @@ export default function ModRows({
         </TableRow>
 
         {/* Expanded Row */}
-        <TableRow
-          className={createClassString(
-            'mod-row-expanded',
-            isExpanded ? 'expanded' : ''
-          )}
+        <ReactCSSTransitionGroup
+          className="mod-row-expanded"
+          component={({ children }) => {
+            const childrenArray = React.Children.toArray(children);
+            return childrenArray[0] || null;
+          }}
+          transitionName="expand"
+          transitionEnterTimeout={expandTime}
+          transitionLeaveTimeout={expandTime}
         >
-          <TableCell></TableCell>
-
-          <TableCell className="files-label">Files:</TableCell>
-
-          <TableCell className="files-list" colSpan={3}>
-            <ul>
-              {files.map((file, fileIndex) => (
-                <li key={`file-${zipIndex}-${fileIndex}`}>{file}</li>
-              ))}
-            </ul>
-          </TableCell>
-        </TableRow>
+          {isExpanded && <ExpandedRow files={files} zipIndex={zipIndex} />}
+        </ReactCSSTransitionGroup>
       </React.Fragment>
     );
   });

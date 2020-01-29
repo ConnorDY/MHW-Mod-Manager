@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Grid } from '@material-ui/core';
 import { Refresh as RefreshIcon } from '@material-ui/icons';
 
-import ModTable from '../ModTable';
+import ModsTable from '../ModsTable';
 import { getGameDirectoryFromBinPath, locateGameBinary } from '../../utils';
 import { readZips } from '../../mod-reader';
 import './App.scss';
@@ -83,7 +83,7 @@ function App() {
       {/* Mod List */}
       <Grid container id="mod-table">
         <Grid item xs={12}>
-          <ModTable
+          <ModsTable
             active={active}
             onSelectAll={onSelectAll}
             onSelectOne={onSelectOne}
