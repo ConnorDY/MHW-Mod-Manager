@@ -2,6 +2,7 @@ import { cwd, fs, path } from './electron';
 
 const configPath = path.join(cwd, 'config.json');
 
+// Config singleton
 const Config = (() => {
   let config;
 
@@ -17,12 +18,14 @@ const Config = (() => {
       return config;
     },
     writeConfig(newConfig) {
-      const newConfigObject = { ...config, ...newConfig };
+      // combine new config and old config
+      config = { ...config, ...newConfig };
 
-      fs.writeFileSync(configPath, JSON.stringify(newConfigObject));
+      // write to config.json
+      fs.writeFileSync(configPath, JSON.stringify(config));
 
       console.log('Wrote new config file:');
-      console.log(newConfigObject);
+      console.log(config);
     }
   };
 })();

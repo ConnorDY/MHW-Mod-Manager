@@ -3,8 +3,8 @@ import { Button, Grid } from '@material-ui/core';
 import { Refresh as RefreshIcon } from '@material-ui/icons';
 
 import ModsTable from '../ModsTable';
-import { getGameDirectoryFromBinPath, locateGameBinary } from '../../utils';
-import { readZips } from '../../mod-reader';
+import { getGameDirectory, locateGameBinary } from '../../utils';
+import { readZips } from '../../mod-loader';
 import './App.scss';
 
 function App() {
@@ -52,10 +52,10 @@ function App() {
     updateActive();
   }
 
-  // on app start:
+  // on app start
   useEffect(() => {
-    locateGameBinary().then((binPath) => {
-      setGameDir(getGameDirectoryFromBinPath(binPath));
+    locateGameBinary().then(() => {
+      setGameDir(getGameDirectory());
       loadMods();
     });
   }, []);

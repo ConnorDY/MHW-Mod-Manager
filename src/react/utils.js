@@ -1,15 +1,17 @@
 import { electron } from './electron';
 import Config from './config';
 
-export function getGameDirectoryFromBinPath() {
+export function getGameDirectory() {
   const { binPath } = Config.getConfig();
   return binPath.replace('MonsterHunterWorld.exe', '');
 }
 
 export async function locateGameBinary() {
+  // try to get binPath from config
   let { binPath } = Config.getConfig();
 
   if (!binPath) {
+    // ask user to locate game binary
     binPath = (
       await electron.remote.dialog.showOpenDialog({
         defaultPath: 'C:\\Program Files (x86)\\Steam\\steamapps\\common',
@@ -24,14 +26,20 @@ export async function locateGameBinary() {
       })
     ).filePaths[0];
 
+    // close app if no binary was selected
+    if (!binPath) {
+      electron.remote.getCurrentWindow().close();
+      return;
+    }
+
+    // write binPath to config
     Config.writeConfig({
       binPath
     });
   }
 
+  // success
   console.log('Game binary located.');
-
-  return binPath;
 }
 
 export function createClassString(...classes) {
