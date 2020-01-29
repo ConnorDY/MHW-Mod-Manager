@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Checkbox, TableCell, TableRow, IconButton } from '@material-ui/core';
 import {
   CheckCircle as ActiveIcon,
@@ -10,6 +11,21 @@ import ExpandedRow from '../ExpandedRow';
 import { createClassString } from '../../utils';
 import './ModRows.scss';
 
+const propTypes = {
+  active: PropTypes.instanceOf(Set).isRequired,
+  expanded: PropTypes.number,
+  onExpand: PropTypes.func.isRequired,
+  onSelectOne: PropTypes.func.isRequired,
+  selected: PropTypes.instanceOf(Set).isRequired,
+  zips: PropTypes.arrayOf(
+    PropTypes.shape({
+      files: PropTypes.arrayOf(PropTypes.string).isRequired,
+      name: PropTypes.string.isRequired,
+      zip: PropTypes.object.isRequired
+    })
+  ).isRequired
+};
+
 export default function ModRows({
   active,
   expanded,
@@ -18,7 +34,7 @@ export default function ModRows({
   selected,
   zips
 }) {
-  return zips.map(([zip, name, files], zipIndex) => {
+  return zips.map(({ files, name }, zipIndex) => {
     const isExpanded = expanded === zipIndex;
 
     return (
@@ -64,3 +80,5 @@ export default function ModRows({
     );
   });
 }
+
+ModRows.propTypes = propTypes;

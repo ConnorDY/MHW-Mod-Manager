@@ -21,7 +21,7 @@ export async function readZips() {
       (filePath) => filePath.charAt(filePath.length - 1) !== '/'
     );
 
-    zips.push([zip, zipPath, files]);
+    zips.push({ files, name: zipPath, zip });
   }
 
   return zips;
