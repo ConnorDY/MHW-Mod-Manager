@@ -17,8 +17,9 @@
     "electron": "electron ./src/electron/starter.js",
     "electron-dev": "cross-env DEV=true npm run electron",
     "preelectron-pack": "npm run build",
-    "electron-pack:windows": "electron-builder build -w",
-    "electron-pack:mac": "electron-builder build -m"
+    "electron-pack": "electron-builder build",
+    "electron-pack:windows": "npm run electron-pack -- -w",
+    "electron-pack:mac": "npm run electron-pack -- -m"
   },
   "eslintConfig": {
     "extends": "react-app"
