@@ -86,7 +86,7 @@ function App() {
       </Grid>
 
       {/* Mod List */}
-      <Grid container id="mod-table">
+      <Grid container id="mods-table">
         <Grid item xs={12}>
           <ModsTable
             active={active}

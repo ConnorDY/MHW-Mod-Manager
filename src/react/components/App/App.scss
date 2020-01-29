@@ -35,13 +35,13 @@ body,
 }
 
 // make table header sticky
-#mod-table {
+#mods-table {
   height: calc(100% - #{$header-height});
 
   > .MuiGrid-root {
     height: 100%;
 
-    > #mod-table-container {
+    > #mods-table-container {
       height: 100%;
     }
   }
