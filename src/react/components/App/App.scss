@@ -22,6 +22,16 @@ body,
       margin: 0 4px;
     }
   }
+
+  .game-dir {
+    display: table-cell;
+    margin-right: 4px;
+    float: right;
+
+    > .game-dir-label {
+      font-weight: bold;
+    }
+  }
 }
 
 // make table header sticky

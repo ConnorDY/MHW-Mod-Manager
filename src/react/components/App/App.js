@@ -75,8 +75,13 @@ function App() {
           >
             <RefreshIcon />
           </Button>
+        </Grid>
 
-          <div style={{ float: 'right' }}>Game Directory: {gameDir}</div>
+        <Grid item>
+          <div className="game-dir">
+            <span className="game-dir-label">Game Directory:</span>{' '}
+            {gameDir ? gameDir.replace(/\\/g, '/') : ''}
+          </div>
         </Grid>
       </Grid>
 
