@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import { Checkbox, TableCell, TableRow, IconButton } from '@material-ui/core';
 import {
   CheckCircle as ActiveIcon,
@@ -61,17 +61,15 @@ export default function ModRows({
         </TableRow>
 
         {/* Expanded Row */}
-        <ReactCSSTransitionGroup
-          component={({ children }) => {
-            const childrenArray = React.Children.toArray(children);
-            return childrenArray[0] || null;
-          }}
-          transitionName="expand"
-          transitionEnterTimeout={expandTime}
-          transitionLeaveTimeout={expandTime}
+        <CSSTransition
+          classNames="expand"
+          in={isExpanded}
+          timeout={expandTime}
+          mountOnEnter
+          unmountOnExit
         >
-          {isExpanded && <ExpandedRow files={files} zipIndex={zipIndex} />}
-        </ReactCSSTransitionGroup>
+          <ExpandedRow files={files} zipIndex={zipIndex} />
+        </CSSTransition>
       </React.Fragment>
     );
   });
