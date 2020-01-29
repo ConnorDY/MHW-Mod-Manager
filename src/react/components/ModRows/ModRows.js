@@ -8,6 +8,7 @@ import {
 } from '@material-ui/icons';
 
 import ExpandedRow from '../ExpandedRow';
+import { zipsPropType } from '../../shared-prop-types';
 import { createClassString } from '../../utils';
 import './ModRows.scss';
 
@@ -17,13 +18,7 @@ const propTypes = {
   onExpand: PropTypes.func.isRequired,
   onSelectOne: PropTypes.func.isRequired,
   selected: PropTypes.instanceOf(Set).isRequired,
-  zips: PropTypes.arrayOf(
-    PropTypes.shape({
-      files: PropTypes.arrayOf(PropTypes.string).isRequired,
-      name: PropTypes.string.isRequired,
-      zip: PropTypes.object.isRequired
-    })
-  ).isRequired
+  zips: zipsPropType
 };
 
 export default function ModRows({

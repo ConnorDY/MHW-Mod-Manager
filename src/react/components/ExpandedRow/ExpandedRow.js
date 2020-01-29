@@ -1,8 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import { TableCell, TableRow } from '@material-ui/core';
 
 import './ExpandedRow.scss';
+
+const propTypes = {
+  files: PropTypes.arrayOf(PropTypes.string).isRequired,
+  expanded: PropTypes.bool.isRequired,
+  zipIndex: PropTypes.number.isRequired
+};
 
 export default function ExpandedRow({ files, expanded, zipIndex }) {
   const expandTime = 150;
@@ -35,3 +42,5 @@ export default function ExpandedRow({ files, expanded, zipIndex }) {
     </CSSTransition>
   );
 }
+
+ExpandedRow.propTypes = propTypes;

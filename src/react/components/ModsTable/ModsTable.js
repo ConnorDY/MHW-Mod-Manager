@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Checkbox,
   Table,
@@ -11,7 +12,16 @@ import {
 } from '@material-ui/core';
 
 import ModRows from '../ModRows';
+import { zipsPropType } from '../../shared-prop-types';
 import './ModsTable.scss';
+
+const propTypes = {
+  active: PropTypes.instanceOf(Set).isRequired,
+  onSelectAll: PropTypes.func.isRequired,
+  onSelectOne: PropTypes.func.isRequired,
+  selected: PropTypes.instanceOf(Set).isRequired,
+  zips: zipsPropType
+};
 
 export default function ModsTable({
   active,
@@ -67,3 +77,5 @@ export default function ModsTable({
     </TableContainer>
   );
 }
+
+ModsTable.propTypes = propTypes;
