@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import { TableCell, TableRow } from '@material-ui/core';
+import { Check as CheckIcon } from '@material-ui/icons';
 
+import { filesPropType } from '../../shared-prop-types';
 import './ExpandedRow.scss';
 
 const propTypes = {
-  files: PropTypes.arrayOf(PropTypes.string).isRequired,
+  files: filesPropType,
   expanded: PropTypes.bool.isRequired,
   zipIndex: PropTypes.number.isRequired
 };
@@ -33,8 +35,10 @@ export default function ExpandedRow({ files, expanded, zipIndex }) {
 
         <TableCell className="files-list" colSpan={3}>
           <ul>
-            {files.map((file, fileIndex) => (
-              <li key={`file-${zipIndex}-${fileIndex}`}>{file}</li>
+            {files.map(({ installed, path }, fileIndex) => (
+              <li key={`file-${zipIndex}-${fileIndex}`}>
+                {path} {installed && <CheckIcon />}
+              </li>
             ))}
           </ul>
         </TableCell>

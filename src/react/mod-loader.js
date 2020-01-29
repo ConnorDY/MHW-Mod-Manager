@@ -1,3 +1,4 @@
+import { getGameDirectory } from './utils';
 import { fs, path, JSZip } from './electron';
 const { readFile } = fs.promises;
 
@@ -10,6 +11,7 @@ export async function readZips() {
     /^.*\.(zip|rar|7z)$/.test(item.toLowerCase())
   );
 
+  const gameDir = getGameDirectory();
   const zips = [];
 
   for (const zipPath of zipPaths) {
@@ -20,9 +22,19 @@ export async function readZips() {
     await zip.loadAsync(data);
 
     // create a list of files in the zip (excluding directories)
-    const files = Object.keys(zip.files).filter(
+    const filePaths = Object.keys(zip.files).filter(
       (filePath) => filePath.charAt(filePath.length - 1) !== '/'
     );
+
+    const files = [];
+
+    // check if the files exist in the game directory
+    for (const filePath of filePaths) {
+      files.push({
+        installed: fs.existsSync(path.join(gameDir, filePath)),
+        path: filePath
+      });
+    }
 
     zips.push({ files, name: zipPath, zip });
   }
