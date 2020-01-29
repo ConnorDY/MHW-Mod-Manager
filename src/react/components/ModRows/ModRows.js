@@ -64,7 +64,11 @@ export default function ModRows({
             isExpanded ? 'expanded' : ''
           )}
         >
-          <TableCell colSpan={5}>
+          <TableCell></TableCell>
+
+          <TableCell className="files-label">Files:</TableCell>
+
+          <TableCell className="files-list" colSpan={3}>
             <ul>
               {files.map((file, fileIndex) => (
                 <li key={`file-${zipIndex}-${fileIndex}`}>{file}</li>

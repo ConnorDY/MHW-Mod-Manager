@@ -10,6 +10,20 @@
     &.expanded {
       display: table-row;
     }
+
+    > .files-label {
+      font-weight: bold;
+      vertical-align: top;
+    }
+
+    > .files-list {
+      padding: 0;
+
+      ul {
+        padding: 0;
+        margin-left: 18px;
+      }
+    }
   }
 
   // cells
