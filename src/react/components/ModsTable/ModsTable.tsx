@@ -13,7 +13,7 @@ import {
 
 import ModRows from '../ModRows';
 import Mod from '../../types/mod';
-import { modsPropType } from '../../shared-prop-types';
+import { modsPropType } from '../../types/shared-prop-types';
 import './ModsTable.scss';
 
 export default function ModsTable({

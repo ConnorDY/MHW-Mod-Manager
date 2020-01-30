@@ -5,7 +5,7 @@ import { TableCell, TableRow } from '@material-ui/core';
 import { Check as CheckIcon } from '@material-ui/icons';
 
 import File from '../../types/file';
-import { filesPropType } from '../../shared-prop-types';
+import { filesPropType } from '../../types/shared-prop-types';
 import './ExpandedRow.scss';
 
 export default function ExpandedRow({
