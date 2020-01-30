@@ -12,25 +12,24 @@ import {
 } from '@material-ui/core';
 
 import ModRows from '../ModRows';
-import { zipsPropType } from '../../shared-prop-types';
+import Mod from '../../types/mod';
+import { modsPropType } from '../../shared-prop-types';
 import './ModsTable.scss';
-
-const propTypes = {
-  active: PropTypes.instanceOf(Set).isRequired,
-  onSelectAll: PropTypes.func.isRequired,
-  onSelectOne: PropTypes.func.isRequired,
-  selected: PropTypes.instanceOf(Set).isRequired,
-  zips: zipsPropType
-};
 
 export default function ModsTable({
   active,
   onSelectAll,
   onSelectOne,
   selected,
-  zips
+  mods
+}: {
+  active: Set<number>;
+  onSelectAll: () => void;
+  onSelectOne: (index: number) => void;
+  selected: Set<number>;
+  mods: Mod[];
 }) {
-  const [expanded, setExpanded] = useState();
+  const [expanded, setExpanded] = useState<number | undefined>();
 
   return (
     <TableContainer id="mods-table-container">
@@ -40,8 +39,8 @@ export default function ModsTable({
           <TableRow>
             <TableCell className="cell-header-checkbox" padding="checkbox">
               <Checkbox
-                indeterminate={selected.size > 0 && selected.size < zips.length}
-                checked={selected.size === zips.length}
+                indeterminate={selected.size > 0 && selected.size < mods.length}
+                checked={selected.size === mods.length}
                 onChange={onSelectAll}
               />
             </TableCell>
@@ -67,10 +66,10 @@ export default function ModsTable({
           <ModRows
             active={active}
             expanded={expanded}
-            onExpand={setExpanded}
+            mods={mods}
+            onExpand={(index?: number) => setExpanded(index)}
             onSelectOne={onSelectOne}
             selected={selected}
-            zips={zips}
           />
         </TableBody>
       </Table>
@@ -78,4 +77,10 @@ export default function ModsTable({
   );
 }
 
-ModsTable.propTypes = propTypes;
+ModsTable.propTypes = {
+  active: PropTypes.instanceOf(Set).isRequired,
+  mods: modsPropType,
+  onSelectAll: PropTypes.func.isRequired,
+  onSelectOne: PropTypes.func.isRequired,
+  selected: PropTypes.instanceOf(Set).isRequired
+};

@@ -4,16 +4,19 @@ import { CSSTransition } from 'react-transition-group';
 import { TableCell, TableRow } from '@material-ui/core';
 import { Check as CheckIcon } from '@material-ui/icons';
 
+import File from '../../types/file';
 import { filesPropType } from '../../shared-prop-types';
 import './ExpandedRow.scss';
 
-const propTypes = {
-  files: filesPropType,
-  expanded: PropTypes.bool.isRequired,
-  zipIndex: PropTypes.number.isRequired
-};
-
-export default function ExpandedRow({ files, expanded, zipIndex }) {
+export default function ExpandedRow({
+  expanded,
+  files,
+  zipIndex
+}: {
+  expanded: boolean;
+  files: File[];
+  zipIndex: number;
+}) {
   const expandTime = 150;
 
   return (
@@ -47,4 +50,8 @@ export default function ExpandedRow({ files, expanded, zipIndex }) {
   );
 }
 
-ExpandedRow.propTypes = propTypes;
+ExpandedRow.propTypes = {
+  files: filesPropType,
+  expanded: PropTypes.bool.isRequired,
+  zipIndex: PropTypes.number.isRequired
+};

@@ -7,7 +7,7 @@ export const filesPropType = PropTypes.arrayOf(
   })
 ).isRequired;
 
-export const zipsPropType = PropTypes.arrayOf(
+export const modsPropType = PropTypes.arrayOf(
   PropTypes.shape({
     files: filesPropType,
     name: PropTypes.string.isRequired,

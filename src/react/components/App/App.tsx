@@ -3,15 +3,16 @@ import { Button, Grid } from '@material-ui/core';
 import { Refresh as RefreshIcon } from '@material-ui/icons';
 
 import ModsTable from '../ModsTable';
+import Mod from '../../types/mod';
 import { getGameDirectory, locateGameBinary } from '../../utils';
 import { readZips } from '../../mod-loader';
 import './App.scss';
 
 function App() {
-  const [active, setActive] = useState(new Set());
-  const [gameDir, setGameDir] = useState();
-  const [selected, setSelected] = useState(new Set());
-  const [zips, setZips] = useState([]);
+  const [active, setActive] = useState(new Set<number>());
+  const [gameDir, setGameDir] = useState<string>();
+  const [selected, setSelected] = useState(new Set<number>());
+  const [mods, setMods] = useState<Mod[]>([]);
 
   function updateSelected() {
     setSelected(new Set(selected));
@@ -22,22 +23,22 @@ function App() {
   }
 
   async function loadMods() {
-    setZips(await readZips());
+    setMods(await readZips());
   }
 
   function onSelectAll() {
-    if (selected.size === zips.length) {
+    if (selected.size === mods.length) {
       selected.clear();
     } else {
-      for (const index of zips.keys()) {
-        selected.add(index);
+      for (let i = 0; i < mods.length; i++) {
+        selected.add(i);
       }
     }
 
     updateSelected();
   }
 
-  function onSelectOne(index) {
+  function onSelectOne(index: number): void {
     selected.has(index) ? selected.delete(index) : selected.add(index);
     updateSelected();
   }
@@ -70,7 +71,7 @@ function App() {
           </Button>
           <Button
             color="secondary"
-            onClick={() => loadMods(gameDir)}
+            onClick={() => loadMods()}
             variant="contained"
           >
             <RefreshIcon />
@@ -90,10 +91,10 @@ function App() {
         <Grid item xs={12}>
           <ModsTable
             active={active}
+            mods={mods}
             onSelectAll={onSelectAll}
             onSelectOne={onSelectOne}
             selected={selected}
-            zips={zips}
           />
         </Grid>
       </Grid>
