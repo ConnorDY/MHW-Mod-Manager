@@ -43,7 +43,19 @@ export async function locateGameBinary(): Promise<void> {
   console.log('Game binary located.');
 }
 
-export function deactivateMod(mod: mod) {
+export async function activateMod(mod: mod): Promise<void> {
+  const gameDir = getGameDirectory();
+
+  for (const file of mod.files) {
+    const buffer = await mod.zip.file(file.path).async('nodebuffer');
+    fs.outputFileSync(path.join(gameDir, file.path), buffer);
+    file.exists = true;
+  }
+
+  mod.active = true;
+}
+
+export function deactivateMod(mod: mod): void {
   const gameDir = getGameDirectory();
 
   for (const file of mod.files) {

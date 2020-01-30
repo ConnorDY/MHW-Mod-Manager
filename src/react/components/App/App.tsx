@@ -4,12 +4,19 @@ import { Refresh as RefreshIcon } from '@material-ui/icons';
 
 import ModsTable from '../ModsTable';
 import mod from '../../types/mod';
-import { getGameDirectory, locateGameBinary, deactivateMod } from '../../utils';
+import {
+  activateMod,
+  deactivateMod,
+  getGameDirectory,
+  locateGameBinary
+} from '../../utils';
 import { readZips } from '../../mod-loader';
 
 import './App.scss';
 
 function App() {
+  const [activating, setActivating] = useState(false);
+  const [deactivating, setDeactivating] = useState(false);
   const [gameDir, setGameDir] = useState<string>();
   const [selected, setSelected] = useState(new Set<number>());
   const [mods, setMods] = useState<mod[]>([]);
@@ -40,6 +47,8 @@ function App() {
   }
 
   function canActivate(): boolean {
+    if (activating || deactivating) return false;
+
     for (const modIndex of selected.values()) {
       if (mods[modIndex].active) return false;
     }
@@ -48,6 +57,8 @@ function App() {
   }
 
   function canDeactivate(): boolean {
+    if (activating || deactivating) return false;
+
     for (const modIndex of selected.values()) {
       if (!mods[modIndex].active) return false;
     }
@@ -55,17 +66,23 @@ function App() {
     return true;
   }
 
-  function onActivate(): void {
+  async function onActivate(): Promise<void> {
+    setActivating(true);
+
     for (const modIndex of selected.values()) {
-      // activate mod
+      await activateMod(mods[modIndex]);
     }
 
     setMods(mods);
     selected.clear();
     updateSelected();
+
+    setActivating(false);
   }
 
   function onDeactivate(): void {
+    setDeactivating(true);
+
     for (const modIndex of selected.values()) {
       deactivateMod(mods[modIndex]);
     }
@@ -73,6 +90,8 @@ function App() {
     setMods(mods);
     selected.clear();
     updateSelected();
+
+    setDeactivating(false);
   }
 
   // on app start
@@ -90,6 +109,7 @@ function App() {
         <Grid item>
           <Button
             color="secondary"
+            disabled={activating || deactivating}
             onClick={() => loadMods()}
             variant="contained"
           >
