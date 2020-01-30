@@ -54,7 +54,7 @@ export default function ModsTable({
       if (orderBy !== key) {
         sortMods(key, true);
         setOrderBy(key);
-        setSortDir(false);
+        setSortDir(true);
       } else {
         sortMods(key, !sortDir);
         setSortDir(!sortDir);

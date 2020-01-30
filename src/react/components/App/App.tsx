@@ -95,9 +95,6 @@ function App() {
   }
 
   function sortMods(column: string, dir: boolean): void {
-    console.log(column);
-    console.log(dir);
-
     switch (column) {
       case 'active':
         mods.sort((a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1));
