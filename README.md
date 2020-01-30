@@ -1,14 +1,19 @@
 # MHW Mod Manager
 
-A basic mod manager for Monster Hunter World (MHW)
+A basic mod manager for Monster Hunter World (MHW).
+
+## Features
+
+- Activating (installing) mods
+- Deactivating (uninstalling) mods
+
+Coming soon:
+
+- Mod conflict detection
 
 ## Configuration
 
-The configuration file for this app can be found at:
-
-| Platform |                       Location                       |
-| -------- | :--------------------------------------------------: |
-| Windows  | `AppData/Local/Programs/mhw-mod-manager/config.json` |
+The configuration file for this app can be found at: `C:/Users/<UserName>/AppData/Local/Programs/mhw-mod-manager/config.json`
 
 The following configuration options are available:
 
