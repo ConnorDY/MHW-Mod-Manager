@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, CircularProgress } from '@material-ui/core';
 import { Refresh as RefreshIcon } from '@material-ui/icons';
 
 import ModsTable from '../ModsTable';
@@ -122,7 +122,7 @@ function App() {
             onClick={onActivate}
             variant="contained"
           >
-            Activate
+            {activating ? <CircularProgress /> : 'Activate'}
           </Button>
 
           <Button
@@ -131,7 +131,7 @@ function App() {
             onClick={onDeactivate}
             variant="contained"
           >
-            Deactivate
+            {deactivating ? <CircularProgress /> : 'Deactivate'}
           </Button>
         </Grid>
 
