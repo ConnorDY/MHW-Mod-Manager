@@ -16,17 +16,51 @@ import mod from '../../types/mod';
 import './ModsTable.scss';
 
 export default function ModsTable({
+  mods,
   onSelectAll,
   onSelectOne,
   selected,
-  mods
+  sortMods
 }: {
   onSelectAll: () => void;
   onSelectOne: (index: number) => void;
   selected: Set<number>;
+  sortMods: (column: string, dir: boolean) => void;
   mods: mod[];
 }) {
   const [expanded, setExpanded] = useState<number | undefined>();
+  const [orderBy, setOrderBy] = useState<string>('filename');
+  const [sortDir, setSortDir] = useState(true);
+
+  const headerCells = [
+    {
+      key: 'active',
+      text: 'Active?'
+    },
+    {
+      key: 'filename',
+      text: 'Filename'
+    },
+    {
+      key: 'num-files',
+      text: '# of Files'
+    }
+  ];
+
+  function createSortHandler(key: string): (event: MouseEvent) => void {
+    return (event: MouseEvent) => {
+      event.preventDefault();
+
+      if (orderBy !== key) {
+        sortMods(key, true);
+        setOrderBy(key);
+        setSortDir(false);
+      } else {
+        sortMods(key, !sortDir);
+        setSortDir(!sortDir);
+      }
+    };
+  }
 
   return (
     <TableContainer id="mods-table-container">
@@ -42,17 +76,25 @@ export default function ModsTable({
               />
             </TableCell>
 
-            <TableCell className="cell-header-active">
-              <TableSortLabel>Active?</TableSortLabel>
-            </TableCell>
-
-            <TableCell className="cell-header-filename">
-              <TableSortLabel>Filename</TableSortLabel>
-            </TableCell>
-
-            <TableCell className="cell-header-num-files">
-              <TableSortLabel># of Files</TableSortLabel>
-            </TableCell>
+            {headerCells.map(({ key, text }) => (
+              <TableCell
+                className={`cell-header-${key}`}
+                key={key}
+                sortDirection={
+                  orderBy === key ? (sortDir ? 'asc' : 'desc') : false
+                }
+              >
+                <TableSortLabel
+                  active={orderBy === key}
+                  direction={
+                    orderBy === key ? (sortDir ? 'asc' : 'desc') : 'asc'
+                  }
+                  onClick={createSortHandler(key) as any}
+                >
+                  {text}
+                </TableSortLabel>
+              </TableCell>
+            ))}
 
             <TableCell className="cell-header-expand"></TableCell>
           </TableRow>
