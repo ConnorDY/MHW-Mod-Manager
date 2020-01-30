@@ -21,12 +21,12 @@ function App() {
   const [selected, setSelected] = useState(new Set<number>());
   const [mods, setMods] = useState<mod[]>([]);
 
-  function updateSelected(): void {
-    setSelected(new Set(selected));
-  }
-
   async function loadMods(): Promise<void> {
     setMods(await readZips());
+  }
+
+  function updateSelected(): void {
+    setSelected(new Set(selected));
   }
 
   function onSelectAll(): void {
