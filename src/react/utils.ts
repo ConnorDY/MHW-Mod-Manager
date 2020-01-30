@@ -1,6 +1,36 @@
-import { electron, fs, path } from './electron';
+import { cwd, electron, fs, path } from './electron';
 import Config from './Config';
 import mod from './types/mod';
+
+export function closeApp(): void {
+  electron.remote.getCurrentWindow().close();
+}
+
+export function createModsDirectory(): void {
+  // try to get modsPath from config
+  const { modsPath } = Config.getConfig();
+
+  if (!modsPath) {
+    // create mods directory in app directory
+    const defaultModsPath = path.join(cwd, 'mods');
+    fs.ensureDirSync(defaultModsPath);
+    console.log('Created mods directory.');
+
+    // write modsPath to config
+    Config.writeConfig({ modsPath: defaultModsPath });
+    return;
+  }
+
+  // close app if the mods directory does not exist
+  if (!fs.existsSync(modsPath)) {
+    console.log('Mods directory not found.');
+    closeApp();
+    return;
+  }
+
+  // success
+  console.log('Found mods directory.');
+}
 
 export function getGameDirectory(): string {
   const { binPath } = Config.getConfig();
@@ -29,7 +59,8 @@ export async function locateGameBinary(): Promise<void> {
 
     // close app if no binary was selected
     if (!binPath) {
-      electron.remote.getCurrentWindow().close();
+      console.log('No binary selected.');
+      closeApp();
       return;
     }
 

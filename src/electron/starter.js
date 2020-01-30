@@ -2,13 +2,9 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
 
-const { createModsDirectory } = require('./utils');
-
 let window;
 
 async function createWindow() {
-  createModsDirectory();
-
   window = new BrowserWindow({
     width: 1280,
     height: 720,

@@ -4,6 +4,7 @@ const configPath = path.join(cwd, 'config.json');
 
 interface config {
   binPath?: string;
+  modsPath?: string;
 }
 
 // Config singleton

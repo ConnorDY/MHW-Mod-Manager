@@ -8,7 +8,8 @@ import {
   activateMod,
   deactivateMod,
   getGameDirectory,
-  locateGameBinary
+  locateGameBinary,
+  createModsDirectory
 } from '../../utils';
 import { readZips } from '../../mod-loader';
 
@@ -121,6 +122,7 @@ function App() {
 
   // on app start
   useEffect(() => {
+    createModsDirectory();
     locateGameBinary().then(() => {
       setGameDir(getGameDirectory());
       loadMods();
