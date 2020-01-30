@@ -1,7 +1,7 @@
+import { fs, path, JSZip } from './electron';
+import { getGameDirectory } from './directories';
 import file from './types/file';
 import mod from './types/mod';
-import { getGameDirectory } from './utils';
-import { fs, path, JSZip } from './electron';
 
 const { readFile } = fs.promises;
 
@@ -50,4 +50,27 @@ export async function readZips(): Promise<mod[]> {
   mods.sort((a, b) => a.name.localeCompare(b.name));
 
   return mods;
+}
+
+export async function activateMod(mod: mod): Promise<void> {
+  const gameDir = getGameDirectory();
+
+  for (const file of mod.files) {
+    const buffer = await mod.zip.file(file.path).async('nodebuffer');
+    fs.outputFileSync(path.join(gameDir, file.path), buffer);
+    file.exists = true;
+  }
+
+  mod.active = true;
+}
+
+export function deactivateMod(mod: mod): void {
+  const gameDir = getGameDirectory();
+
+  for (const file of mod.files) {
+    fs.unlinkSync(path.join(gameDir, file.path));
+    file.exists = false;
+  }
+
+  mod.active = false;
 }

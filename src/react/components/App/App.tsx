@@ -3,15 +3,13 @@ import { Button, Grid, CircularProgress } from '@material-ui/core';
 import { Refresh as RefreshIcon } from '@material-ui/icons';
 
 import ModsTable from '../ModsTable';
-import mod from '../../types/mod';
 import {
-  activateMod,
-  deactivateMod,
-  getGameDirectory,
+  getModsDirectory,
   locateGameBinary,
-  createModsDirectory
-} from '../../utils';
-import { readZips } from '../../mod-loader';
+  getGameDirectory
+} from '../../directories';
+import { readZips, activateMod, deactivateMod } from '../../mods';
+import mod from '../../types/mod';
 
 import './App.scss';
 
@@ -122,7 +120,7 @@ function App() {
 
   // on app start
   useEffect(() => {
-    createModsDirectory();
+    getModsDirectory();
     locateGameBinary().then(() => {
       setGameDir(getGameDirectory());
       loadMods();
