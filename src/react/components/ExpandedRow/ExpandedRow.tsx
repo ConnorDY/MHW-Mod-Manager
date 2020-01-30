@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import { TableCell, TableRow } from '@material-ui/core';
 import { Check as CheckIcon } from '@material-ui/icons';
 
-import file from '../../types/file';
+import File from '../../types/File';
 
 import './ExpandedRow.scss';
 
@@ -13,7 +13,7 @@ export default function ExpandedRow({
   zipIndex
 }: {
   expanded: boolean;
-  files: file[];
+  files: File[];
   zipIndex: number;
 }) {
   const expandTime = 150;

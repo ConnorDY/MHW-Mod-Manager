@@ -1,6 +1,6 @@
-import { cwd, electron, fs, path } from './electron';
-import { closeApp } from './utils';
+import { cwd, dialog, fs, path } from './electron';
 import Config from './Config';
+import { closeApp } from './utils';
 
 export function getModsDirectory(): void {
   // try to get modsPath from config
@@ -40,7 +40,7 @@ export async function locateGameBinary(): Promise<void> {
   if (!binPath) {
     // ask user to locate game binary
     binPath = (
-      await electron.remote.dialog.showOpenDialog({
+      await dialog.showOpenDialog({
         defaultPath: 'C:\\Program Files (x86)\\Steam\\steamapps\\common',
         filters: [
           {

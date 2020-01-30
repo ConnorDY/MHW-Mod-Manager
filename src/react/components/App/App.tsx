@@ -9,7 +9,7 @@ import {
   getGameDirectory
 } from '../../directories';
 import { readZips, activateMod, deactivateMod } from '../../mods';
-import mod from '../../types/mod';
+import Mod from '../../types/Mod';
 
 import './App.scss';
 
@@ -18,7 +18,7 @@ function App() {
   const [deactivating, setDeactivating] = useState(false);
   const [gameDir, setGameDir] = useState<string>();
   const [selected, setSelected] = useState(new Set<number>());
-  const [mods, setMods] = useState<mod[]>([]);
+  const [mods, setMods] = useState<Mod[]>([]);
 
   async function loadMods(): Promise<void> {
     setMods(await readZips());

@@ -1,9 +1,9 @@
 import JSZip from 'jszip';
-import file from './file';
+import File from './File';
 
-export default interface mod {
+export default interface Mod {
   active: boolean;
-  files: file[];
+  files: File[];
   name: string;
   zip: JSZip;
 }

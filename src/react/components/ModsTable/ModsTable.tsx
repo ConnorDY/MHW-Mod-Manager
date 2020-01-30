@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 
 import ModRows from '../ModRows';
-import mod from '../../types/mod';
+import Mod from '../../types/Mod';
 
 import './ModsTable.scss';
 
@@ -26,7 +26,7 @@ export default function ModsTable({
   onSelectOne: (index: number) => void;
   selected: Set<number>;
   sortMods: (column: string, dir: boolean) => void;
-  mods: mod[];
+  mods: Mod[];
 }) {
   const [expanded, setExpanded] = useState<number | undefined>();
   const [orderBy, setOrderBy] = useState<string>('filename');

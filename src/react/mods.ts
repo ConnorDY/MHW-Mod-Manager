@@ -1,13 +1,13 @@
 import { fs, path, JSZip } from './electron';
 import { getGameDirectory } from './directories';
-import file from './types/file';
-import mod from './types/mod';
+import File from './types/File';
+import Mod from './types/Mod';
 
 const { readFile } = fs.promises;
 
 const modsDir = 'mods';
 
-export async function readZips(): Promise<mod[]> {
+export async function readZips(): Promise<Mod[]> {
   // get a list of supported files from the mods folder
   const items: string[] = fs.readdirSync(modsDir);
   const zipPaths = items.filter((item) =>
@@ -15,7 +15,7 @@ export async function readZips(): Promise<mod[]> {
   );
 
   const gameDir = getGameDirectory();
-  const mods: mod[] = [];
+  const mods: Mod[] = [];
 
   for (const zipPath of zipPaths) {
     const zip = new JSZip();
@@ -29,7 +29,7 @@ export async function readZips(): Promise<mod[]> {
       (filePath) => filePath.charAt(filePath.length - 1) !== '/'
     );
 
-    const files: file[] = [];
+    const files: File[] = [];
 
     // check if the files exist in the game directory
     for (const filePath of filePaths) {
@@ -52,7 +52,7 @@ export async function readZips(): Promise<mod[]> {
   return mods;
 }
 
-export async function activateMod(mod: mod): Promise<void> {
+export async function activateMod(mod: Mod): Promise<void> {
   const gameDir = getGameDirectory();
 
   for (const file of mod.files) {
@@ -64,7 +64,7 @@ export async function activateMod(mod: mod): Promise<void> {
   mod.active = true;
 }
 
-export function deactivateMod(mod: mod): void {
+export function deactivateMod(mod: Mod): void {
   const gameDir = getGameDirectory();
 
   for (const file of mod.files) {
