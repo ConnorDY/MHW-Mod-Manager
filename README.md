@@ -16,4 +16,4 @@ To change the location of your MHW installation, edit `config.json`.
 
 | Platform |                         Location                          |
 | -------- | :-------------------------------------------------------: |
-| Windows  | `AppData/Local/Programs/mhw-mod-manager/mods/config.json` |
+| Windows  | `AppData/Local/Programs/mhw-mod-manager/config.json` |
