@@ -1,6 +1,7 @@
 import { cwd, dialog, fs, path } from './electron';
 import Config from './Config';
-import { closeApp } from './utils';
+import Alert from './types/Alert';
+import { closeApp, showAlert } from './utils';
 
 export function getModsDirectory(): void {
   // try to get modsPath from config
@@ -19,7 +20,7 @@ export function getModsDirectory(): void {
 
   // close app if the mods directory does not exist
   if (!fs.existsSync(modsPath)) {
-    console.log('Mods directory not found.');
+    showAlert('Mods directory not found.', Alert.Error);
     closeApp();
     return;
   }
@@ -55,7 +56,7 @@ export async function locateGameBinary(): Promise<void> {
 
     // close app if no binary was selected
     if (!binPath) {
-      console.log('No binary selected.');
+      showAlert('No binary selected.', Alert.Error);
       closeApp();
       return;
     }
