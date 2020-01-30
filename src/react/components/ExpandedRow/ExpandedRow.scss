@@ -1,6 +1,8 @@
 #mods-table-container {
   // expanded row
   .mod-row-expanded {
+    display: none;
+
     > .files-label {
       font-weight: bold;
       vertical-align: top;
@@ -14,16 +16,22 @@
         margin-left: 18px;
       }
     }
-  }
 
-  // expanded row animations
-  .expand-enter,
-  .expand-exit.expand-exit-active {
-    opacity: 0;
-  }
+    // expanded row animations
+    &.expand-enter,
+    &.expand-exit.expand-exit-active {
+      opacity: 0;
+    }
 
-  .expand-exit,
-  .expand-enter.expand-enter-active {
-    opacity: 1;
+    &.expand-exit,
+    &.expand-enter.expand-enter-active {
+      opacity: 1;
+    }
+
+    &.expand-enter,
+    &.expand-exit,
+    &.expand-enter-done {
+      display: table-row;
+    }
   }
 }

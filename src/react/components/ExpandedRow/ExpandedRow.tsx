@@ -19,13 +19,7 @@ export default function ExpandedRow({
   const expandTime = 150;
 
   return (
-    <CSSTransition
-      classNames="expand"
-      in={expanded}
-      timeout={expandTime}
-      mountOnEnter
-      unmountOnExit
-    >
+    <CSSTransition classNames="expand" in={expanded} timeout={expandTime}>
       <TableRow
         className="mod-row-expanded"
         key="expanded-row"
