@@ -13,14 +13,12 @@ import { createClassString } from '../../utils';
 import './ModRows.scss';
 
 export default function ModRows({
-  active,
   expanded,
   onExpand,
   onSelectOne,
   selected,
   mods
 }: {
-  active: Set<number>;
   expanded: number | undefined;
   onExpand: (index?: number) => void;
   onSelectOne: (index: number) => void;
@@ -29,7 +27,7 @@ export default function ModRows({
 }) {
   return (
     <>
-      {mods.map(({ files, name }, modIndex) => {
+      {mods.map(({ active, files, name }, modIndex) => {
         const isExpanded = expanded === modIndex;
 
         return (
@@ -50,7 +48,7 @@ export default function ModRows({
               </TableCell>
 
               <TableCell className="cell-active" padding="checkbox">
-                {active.has(modIndex) ? <ActiveIcon /> : <></>}
+                {active ? <ActiveIcon /> : <></>}
               </TableCell>
 
               <TableCell className="cell-filename">{name}</TableCell>

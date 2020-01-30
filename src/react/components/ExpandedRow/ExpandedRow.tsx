@@ -31,9 +31,9 @@ export default function ExpandedRow({
 
         <TableCell className="files-list" colSpan={3}>
           <ul>
-            {files.map(({ installed, path }, fileIndex) => (
+            {files.map(({ exists, path }, fileIndex) => (
               <li key={`file-${zipIndex}-${fileIndex}`}>
-                {path} {installed && <CheckIcon />}
+                {path} {exists && <CheckIcon />}
               </li>
             ))}
           </ul>

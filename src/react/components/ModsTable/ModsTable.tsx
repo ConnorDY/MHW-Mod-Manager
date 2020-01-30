@@ -16,13 +16,11 @@ import mod from '../../types/mod';
 import './ModsTable.scss';
 
 export default function ModsTable({
-  active,
   onSelectAll,
   onSelectOne,
   selected,
   mods
 }: {
-  active: Set<number>;
   onSelectAll: () => void;
   onSelectOne: (index: number) => void;
   selected: Set<number>;
@@ -63,7 +61,6 @@ export default function ModsTable({
         {/* Body */}
         <TableBody>
           <ModRows
-            active={active}
             expanded={expanded}
             mods={mods}
             onExpand={(index?: number) => setExpanded(index)}

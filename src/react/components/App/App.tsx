@@ -10,17 +10,12 @@ import { readZips } from '../../mod-loader';
 import './App.scss';
 
 function App() {
-  const [active, setActive] = useState(new Set<number>());
   const [gameDir, setGameDir] = useState<string>();
   const [selected, setSelected] = useState(new Set<number>());
   const [mods, setMods] = useState<mod[]>([]);
 
   function updateSelected(): void {
     setSelected(new Set(selected));
-  }
-
-  function updateActive(): void {
-    setActive(new Set(active));
   }
 
   async function loadMods(): Promise<void> {
@@ -46,12 +41,11 @@ function App() {
 
   function onActivate(): void {
     for (const mod of selected.values()) {
-      active.add(mod);
+      // activate mod
     }
-    selected.clear();
 
+    selected.clear();
     updateSelected();
-    updateActive();
   }
 
   // on app start
@@ -91,7 +85,6 @@ function App() {
       <Grid container id="mods-table">
         <Grid item xs={12}>
           <ModsTable
-            active={active}
             mods={mods}
             onSelectAll={onSelectAll}
             onSelectOne={onSelectOne}

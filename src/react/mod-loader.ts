@@ -15,7 +15,7 @@ export async function readZips(): Promise<mod[]> {
   );
 
   const gameDir = getGameDirectory();
-  const zips: mod[] = [];
+  const mods: mod[] = [];
 
   for (const zipPath of zipPaths) {
     const zip = new JSZip();
@@ -34,13 +34,18 @@ export async function readZips(): Promise<mod[]> {
     // check if the files exist in the game directory
     for (const filePath of filePaths) {
       files.push({
-        installed: fs.existsSync(path.join(gameDir, filePath)),
+        exists: fs.existsSync(path.join(gameDir, filePath)),
         path: filePath
       });
     }
 
-    zips.push({ files, name: zipPath, zip });
+    mods.push({
+      active: files.every((file) => file.exists),
+      files,
+      name: zipPath,
+      zip
+    });
   }
 
-  return zips;
+  return mods;
 }
