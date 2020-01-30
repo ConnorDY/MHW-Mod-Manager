@@ -27,7 +27,7 @@ const Config = (() => {
       config = { ...config, ...newConfig };
 
       // write to config.json
-      fs.writeFileSync(configPath, JSON.stringify(config));
+      fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
 
       console.log('Wrote new config file:');
       console.log(config);
