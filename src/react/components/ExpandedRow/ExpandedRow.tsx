@@ -1,11 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import { TableCell, TableRow } from '@material-ui/core';
 import { Check as CheckIcon } from '@material-ui/icons';
 
 import File from '../../types/file';
-import { filesPropType } from '../../types/shared-prop-types';
 import './ExpandedRow.scss';
 
 export default function ExpandedRow({
@@ -49,9 +47,3 @@ export default function ExpandedRow({
     </CSSTransition>
   );
 }
-
-ExpandedRow.propTypes = {
-  files: filesPropType,
-  expanded: PropTypes.bool.isRequired,
-  zipIndex: PropTypes.number.isRequired
-};

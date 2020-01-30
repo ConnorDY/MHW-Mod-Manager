@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Checkbox, TableCell, TableRow, IconButton } from '@material-ui/core';
 import {
   CheckCircle as ActiveIcon,
@@ -9,7 +8,6 @@ import {
 
 import ExpandedRow from '../ExpandedRow';
 import Mod from '../../types/mod';
-import { modsPropType } from '../../types/shared-prop-types';
 import { createClassString } from '../../utils';
 import './ModRows.scss';
 
@@ -85,12 +83,3 @@ export default function ModRows({
     </>
   );
 }
-
-ModRows.propTypes = {
-  active: PropTypes.instanceOf(Set).isRequired,
-  expanded: PropTypes.number,
-  mods: modsPropType,
-  onExpand: PropTypes.func.isRequired,
-  onSelectOne: PropTypes.func.isRequired,
-  selected: PropTypes.instanceOf(Set).isRequired
-};

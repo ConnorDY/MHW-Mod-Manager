@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import {
   Checkbox,
   Table,
@@ -13,7 +12,6 @@ import {
 
 import ModRows from '../ModRows';
 import Mod from '../../types/mod';
-import { modsPropType } from '../../types/shared-prop-types';
 import './ModsTable.scss';
 
 export default function ModsTable({
@@ -76,11 +74,3 @@ export default function ModsTable({
     </TableContainer>
   );
 }
-
-ModsTable.propTypes = {
-  active: PropTypes.instanceOf(Set).isRequired,
-  mods: modsPropType,
-  onSelectAll: PropTypes.func.isRequired,
-  onSelectOne: PropTypes.func.isRequired,
-  selected: PropTypes.instanceOf(Set).isRequired
-};
