@@ -1,5 +1,6 @@
-import { electron } from './electron';
+import { electron, fs, path } from './electron';
 import Config from './Config';
+import mod from './types/mod';
 
 export function getGameDirectory(): string {
   const { binPath } = Config.getConfig();
@@ -40,6 +41,17 @@ export async function locateGameBinary(): Promise<void> {
 
   // success
   console.log('Game binary located.');
+}
+
+export function deactivateMod(mod: mod) {
+  const gameDir = getGameDirectory();
+
+  for (const file of mod.files) {
+    fs.unlinkSync(path.join(gameDir, file.path));
+    file.exists = false;
+  }
+
+  mod.active = false;
 }
 
 export function createClassString(...classes: string[]): string {

@@ -4,7 +4,7 @@ import { Refresh as RefreshIcon } from '@material-ui/icons';
 
 import ModsTable from '../ModsTable';
 import mod from '../../types/mod';
-import { getGameDirectory, locateGameBinary } from '../../utils';
+import { getGameDirectory, locateGameBinary, deactivateMod } from '../../utils';
 import { readZips } from '../../mod-loader';
 
 import './App.scss';
@@ -39,11 +39,38 @@ function App() {
     updateSelected();
   }
 
+  function canActivate(): boolean {
+    for (const modIndex of selected.values()) {
+      if (mods[modIndex].active) return false;
+    }
+
+    return true;
+  }
+
+  function canDeactivate(): boolean {
+    for (const modIndex of selected.values()) {
+      if (!mods[modIndex].active) return false;
+    }
+
+    return true;
+  }
+
   function onActivate(): void {
-    for (const mod of selected.values()) {
+    for (const modIndex of selected.values()) {
       // activate mod
     }
 
+    setMods(mods);
+    selected.clear();
+    updateSelected();
+  }
+
+  function onDeactivate(): void {
+    for (const modIndex of selected.values()) {
+      deactivateMod(mods[modIndex]);
+    }
+
+    setMods(mods);
     selected.clear();
     updateSelected();
   }
@@ -61,15 +88,30 @@ function App() {
       {/* Toolbar */}
       <Grid container id="toolbar">
         <Grid item>
-          <Button color="primary" onClick={onActivate} variant="contained">
-            Activate
-          </Button>
           <Button
             color="secondary"
             onClick={() => loadMods()}
             variant="contained"
           >
             <RefreshIcon />
+          </Button>
+
+          <Button
+            color="primary"
+            disabled={!canActivate()}
+            onClick={onActivate}
+            variant="contained"
+          >
+            Activate
+          </Button>
+
+          <Button
+            color="primary"
+            disabled={!canDeactivate()}
+            onClick={onDeactivate}
+            variant="contained"
+          >
+            Deactivate
           </Button>
         </Grid>
 
