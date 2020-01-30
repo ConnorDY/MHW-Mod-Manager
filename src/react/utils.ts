@@ -1,12 +1,12 @@
 import { electron } from './electron';
-import Config from './config';
+import Config from './Config';
 
-export function getGameDirectory() {
+export function getGameDirectory(): string {
   const { binPath } = Config.getConfig();
-  return binPath.replace('MonsterHunterWorld.exe', '');
+  return binPath ? binPath.replace('MonsterHunterWorld.exe', '') : '';
 }
 
-export async function locateGameBinary() {
+export async function locateGameBinary(): Promise<void> {
   // try to get binPath from config
   let { binPath } = Config.getConfig();
 
@@ -42,7 +42,7 @@ export async function locateGameBinary() {
   console.log('Game binary located.');
 }
 
-export function createClassString(...classes) {
+export function createClassString(...classes: string[]): string {
   return classes
     .map((c) => (c ? c.trim() : c))
     .filter((c) => c)

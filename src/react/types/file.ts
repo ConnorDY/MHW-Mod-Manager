@@ -1,4 +1,4 @@
-export default interface File {
+export default interface file {
   installed: boolean;
   path: string;
 }

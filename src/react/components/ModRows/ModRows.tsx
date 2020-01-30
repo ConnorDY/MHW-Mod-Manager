@@ -7,8 +7,9 @@ import {
 } from '@material-ui/icons';
 
 import ExpandedRow from '../ExpandedRow';
-import Mod from '../../types/mod';
+import mod from '../../types/mod';
 import { createClassString } from '../../utils';
+
 import './ModRows.scss';
 
 export default function ModRows({
@@ -24,7 +25,7 @@ export default function ModRows({
   onExpand: (index?: number) => void;
   onSelectOne: (index: number) => void;
   selected: Set<number>;
-  mods: Mod[];
+  mods: mod[];
 }) {
   return (
     <>

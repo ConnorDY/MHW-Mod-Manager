@@ -1,6 +1,6 @@
 const electron = window.require('electron');
 
-const cwd = electron.remote.process.cwd();
+const cwd: string = electron.remote.process.cwd();
 
 const fs = electron.remote.require('fs');
 const path = electron.remote.require('path');

@@ -11,7 +11,8 @@ import {
 } from '@material-ui/core';
 
 import ModRows from '../ModRows';
-import Mod from '../../types/mod';
+import mod from '../../types/mod';
+
 import './ModsTable.scss';
 
 export default function ModsTable({
@@ -25,7 +26,7 @@ export default function ModsTable({
   onSelectAll: () => void;
   onSelectOne: (index: number) => void;
   selected: Set<number>;
-  mods: Mod[];
+  mods: mod[];
 }) {
   const [expanded, setExpanded] = useState<number | undefined>();
 

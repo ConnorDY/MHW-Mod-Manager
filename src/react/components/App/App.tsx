@@ -3,30 +3,31 @@ import { Button, Grid } from '@material-ui/core';
 import { Refresh as RefreshIcon } from '@material-ui/icons';
 
 import ModsTable from '../ModsTable';
-import Mod from '../../types/mod';
+import mod from '../../types/mod';
 import { getGameDirectory, locateGameBinary } from '../../utils';
 import { readZips } from '../../mod-loader';
+
 import './App.scss';
 
 function App() {
   const [active, setActive] = useState(new Set<number>());
   const [gameDir, setGameDir] = useState<string>();
   const [selected, setSelected] = useState(new Set<number>());
-  const [mods, setMods] = useState<Mod[]>([]);
+  const [mods, setMods] = useState<mod[]>([]);
 
-  function updateSelected() {
+  function updateSelected(): void {
     setSelected(new Set(selected));
   }
 
-  function updateActive() {
+  function updateActive(): void {
     setActive(new Set(active));
   }
 
-  async function loadMods() {
+  async function loadMods(): Promise<void> {
     setMods(await readZips());
   }
 
-  function onSelectAll() {
+  function onSelectAll(): void {
     if (selected.size === mods.length) {
       selected.clear();
     } else {
@@ -43,7 +44,7 @@ function App() {
     updateSelected();
   }
 
-  function onActivate() {
+  function onActivate(): void {
     for (const mod of selected.values()) {
       active.add(mod);
     }

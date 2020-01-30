@@ -2,22 +2,26 @@ import { cwd, fs, path } from './electron';
 
 const configPath = path.join(cwd, 'config.json');
 
+interface config {
+  binPath?: string;
+}
+
 // Config singleton
 const Config = (() => {
-  let config;
+  let config: config;
 
-  function loadConfigFile() {
+  function loadConfigFile(): config {
     return fs.existsSync(configPath)
       ? JSON.parse(fs.readFileSync(configPath, { encoding: 'utf8' }))
       : {};
   }
 
   return {
-    getConfig: () => {
+    getConfig: (): config => {
       if (!config) config = loadConfigFile();
       return config;
     },
-    writeConfig(newConfig) {
+    writeConfig: (newConfig: config): void => {
       // combine new config and old config
       config = { ...config, ...newConfig };
 
