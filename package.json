@@ -46,9 +46,6 @@
   "dependencies": {
     "@material-ui/core": "^4.8.3",
     "@material-ui/icons": "^4.5.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/user-event": "^7.2.1",
     "fs-extra": "^8.1.0",
     "jszip": "^3.2.2",
     "node-sass": "^4.13.1",
@@ -59,6 +56,9 @@
     "typeface-roboto": "0.0.75"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
     "@types/electron": "^1.6.10",
     "@types/jest": "^25.1.1",
     "@types/jszip": "^3.1.7",
