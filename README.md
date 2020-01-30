@@ -2,18 +2,17 @@
 
 A basic mod manager for Monster Hunter World (MHW)
 
-## Mods folder
-
-Place your mod Zip files in this directory.
-
-| Platform |                   Location                    |
-| -------- | :-------------------------------------------: |
-| Windows  | `AppData/Local/Programs/mhw-mod-manager/mods` |
-
 ## Configuration
 
-To change the location of your MHW installation, edit `config.json`.
+The configuration file for this app can be found at:
 
-| Platform |                         Location                          |
-| -------- | :-------------------------------------------------------: |
+| Platform |                       Location                       |
+| -------- | :--------------------------------------------------: |
 | Windows  | `AppData/Local/Programs/mhw-mod-manager/config.json` |
+
+The following configuration options are available:
+
+| Option   |  Type  |                    Default                    |                    Description                    |
+| -------- | :----: | :-------------------------------------------: | :-----------------------------------------------: |
+| binPath  | String |                                               | Location of MonsterHunterWorld.exe on your system |
+| modsPath | String | `AppData/Local/Programs/mhw-mod-manager/mods` |          Location of your mods Zip files          |
