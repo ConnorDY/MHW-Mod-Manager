@@ -2,6 +2,8 @@
 
 A basic mod manager for Monster Hunter World (MHW).
 
+Simply drop your mod Zip files into the mods folder then click a button to activate or deactivate your mods.
+
 ## Features
 
 - Activating (installing) mods
