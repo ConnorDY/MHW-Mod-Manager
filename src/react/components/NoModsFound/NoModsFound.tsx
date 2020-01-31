@@ -6,7 +6,10 @@ import './NoModsFound.scss';
 export default function NoModsFound() {
   return (
     <TableRow className="no-mods-found">
-      <TableCell colSpan={5}>No mods found...</TableCell>
+      <TableCell colSpan={5}>
+        <p>No mods found...</p>
+        <p>Drag and drop mods onto this window to add them.</p>
+      </TableCell>
     </TableRow>
   );
 }
