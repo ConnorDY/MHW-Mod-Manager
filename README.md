@@ -22,3 +22,13 @@ The following configuration options are available:
 | binPath  | String  |                                               | Location of MonsterHunterWorld.exe on your system |
 | darkMode | Boolean |                    `false`                    |   If `true`, the app uses a dark color scheme.    |
 | modsPath | String  | `AppData/Local/Programs/mhw-mod-manager/mods` |          Location of your mods Zip files          |
+
+## Screenshots
+
+### Light Mode
+
+![alt text](./screenshots/light-mode.png 'Light Mode')
+
+### Dark Mode
+
+![alt text](./screenshots/dark-mode.png 'Light Mode')
