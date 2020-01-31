@@ -94,6 +94,11 @@ $color-green: #008000;
     }
   }
 
+  .drop-zone-inner {
+    color: $color-white;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
   /**
    * Dark Theme
    */

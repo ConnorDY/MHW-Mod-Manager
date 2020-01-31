@@ -6,6 +6,7 @@ import {
   Refresh as RefreshIcon
 } from '@material-ui/icons';
 
+import DragAndDropOverlay from '../DragAndDropOverlay';
 import ModsTable from '../ModsTable';
 import {
   getModsDirectory,
@@ -125,6 +126,10 @@ function App() {
     setMods(mods);
   }
 
+  function onFileDrop(event: DragEvent) {
+    console.log(event.dataTransfer?.files);
+  }
+
   // on app start
   useEffect(() => {
     getModsDirectory();
@@ -201,6 +206,9 @@ function App() {
           />
         </Grid>
       </Grid>
+
+      {/* Drag and Drop */}
+      <DragAndDropOverlay onDrop={onFileDrop} />
     </div>
   );
 }
