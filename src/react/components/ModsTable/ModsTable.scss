@@ -1,4 +1,8 @@
 #mods-table-container {
+  &.no-mods > table {
+    height: 100%;
+  }
+
   .cell-header-num-files {
     width: 86px;
   }

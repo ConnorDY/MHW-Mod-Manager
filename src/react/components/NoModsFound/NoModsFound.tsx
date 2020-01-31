@@ -5,10 +5,8 @@ import './NoModsFound.scss';
 
 export default function NoModsFound() {
   return (
-    <TableRow>
-      <TableCell className="no-mods-found" colSpan={5}>
-        No mods found...
-      </TableCell>
+    <TableRow className="no-mods-found">
+      <TableCell colSpan={5}>No mods found...</TableCell>
     </TableRow>
   );
 }

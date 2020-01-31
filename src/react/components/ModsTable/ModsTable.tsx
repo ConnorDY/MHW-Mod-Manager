@@ -64,7 +64,10 @@ export default function ModsTable({
   }
 
   return (
-    <TableContainer id="mods-table-container">
+    <TableContainer
+      id="mods-table-container"
+      className={mods.length === 0 ? 'no-mods' : undefined}
+    >
       <Table stickyHeader>
         {/* Header */}
         <TableHead>

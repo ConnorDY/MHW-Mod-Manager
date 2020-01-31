@@ -1,5 +1,7 @@
-#mods-table-container {
-  .no-mods-found {
+#mods-table-container .no-mods-found {
+  height: 100%;
+
+  > td {
     text-align: center;
   }
 }
