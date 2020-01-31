@@ -13,7 +13,7 @@ import {
   locateGameBinary,
   getGameDirectory
 } from '../../directories';
-import { readZips, activateMod, deactivateMod } from '../../mods';
+import { activateMod, deactivateMod, addMods, readZips } from '../../mods';
 import Config from '../../Config';
 import Mod from '../../types/Mod';
 
@@ -23,6 +23,7 @@ function App() {
   const { darkMode } = Config.getConfig();
 
   const [activating, setActivating] = useState(false);
+  const [copying, setCopying] = useState(false);
   const [deactivating, setDeactivating] = useState(false);
   const [gameDir, setGameDir] = useState<string>();
   const [selected, setSelected] = useState(new Set<number>());
@@ -54,7 +55,7 @@ function App() {
   }
 
   function canActivate(): boolean {
-    if (activating || deactivating) return false;
+    if (activating || deactivating || copying) return false;
 
     for (const modIndex of selected.values()) {
       if (mods[modIndex].active) return false;
@@ -64,7 +65,7 @@ function App() {
   }
 
   function canDeactivate(): boolean {
-    if (activating || deactivating) return false;
+    if (activating || deactivating || copying) return false;
 
     for (const modIndex of selected.values()) {
       if (!mods[modIndex].active) return false;
@@ -126,8 +127,14 @@ function App() {
     setMods(mods);
   }
 
-  function onFileDrop(event: DragEvent) {
-    console.log(event.dataTransfer?.files);
+  async function onFileDrop(event: DragEvent) {
+    setCopying(true);
+
+    if (!event.dataTransfer || !event.dataTransfer.files) return;
+    await addMods(event.dataTransfer.files);
+
+    setCopying(false);
+    loadMods();
   }
 
   // on app start

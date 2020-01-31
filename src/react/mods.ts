@@ -1,15 +1,16 @@
 import { fs, path, JSZip } from './electron';
 import { getGameDirectory } from './directories';
+import Config from './Config';
 import File from './types/File';
 import Mod from './types/Mod';
 
 const { readFile } = fs.promises;
 
-const modsDir = 'mods';
-
 export async function readZips(): Promise<Mod[]> {
+  const { modsPath } = Config.getConfig();
+
   // get a list of supported files from the mods folder
-  const items: string[] = fs.readdirSync(modsDir);
+  const items: string[] = fs.readdirSync(modsPath);
   const zipPaths = items.filter((item) =>
     /^.*\.(zip|rar|7z)$/.test(item.toLowerCase())
   );
@@ -21,7 +22,7 @@ export async function readZips(): Promise<Mod[]> {
     const zip = new JSZip();
 
     // read zip file
-    const data = await readFile(path.join(modsDir, zipPath));
+    const data = await readFile(path.join(modsPath, zipPath));
     await zip.loadAsync(data);
 
     // create a list of files in the zip (excluding directories)
@@ -73,4 +74,12 @@ export function deactivateMod(mod: Mod): void {
   }
 
   mod.active = false;
+}
+
+export async function addMods(files: FileList): Promise<void> {
+  const { modsPath } = Config.getConfig();
+
+  for (const file of files) {
+    await fs.copyFile(file.path, path.join(modsPath, file.name));
+  }
 }
