@@ -4,20 +4,29 @@ import { Archive as ArchiveIcon } from '@material-ui/icons';
 
 import { zipRegex } from '../../types/Mod';
 import './DragAndDropOverlay.scss';
+import { showAlert } from '../../utils';
+import Alert from '../../types/Alert';
 
 export default function DragAndDropOverlay({
   onFileDrop
 }: {
-  onFileDrop: (event: DragEvent) => void;
+  onFileDrop: (files: FileList) => void;
 }) {
   function onDrop(event: DragEvent) {
     if (!event.dataTransfer || !event.dataTransfer.files.length) return;
 
     for (const file of event.dataTransfer.files) {
-      if (!zipRegex.test(file.name)) return;
+      if (!zipRegex.test(file.name)) {
+        // invalid file dropped
+        showAlert(
+          'Invalid file type. Only zip files are supported.',
+          Alert.Warning
+        );
+        return;
+      }
     }
 
-    onFileDrop(event);
+    onFileDrop(event.dataTransfer.files);
   }
 
   return (

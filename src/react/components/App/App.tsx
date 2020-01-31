@@ -127,11 +127,9 @@ function App() {
     setMods(mods);
   }
 
-  async function onFileDrop(event: DragEvent) {
-    if (!event.dataTransfer || !event.dataTransfer.files.length) return;
-
+  async function onFileDrop(files: FileList) {
     setCopying(true);
-    await addMods(event.dataTransfer.files);
+    await addMods(files);
     setCopying(false);
 
     loadMods();
