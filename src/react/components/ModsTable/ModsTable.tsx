@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 
 import ModRows from '../ModRows';
+import NoModsFound from '../NoModsFound';
 import Mod from '../../types/Mod';
 
 import './ModsTable.scss';
@@ -71,7 +72,7 @@ export default function ModsTable({
             <TableCell className="cell-header-checkbox" padding="checkbox">
               <Checkbox
                 indeterminate={selected.size > 0 && selected.size < mods.length}
-                checked={selected.size === mods.length}
+                checked={selected.size > 0 && selected.size === mods.length}
                 onChange={onSelectAll}
               />
             </TableCell>
@@ -102,13 +103,17 @@ export default function ModsTable({
 
         {/* Body */}
         <TableBody>
-          <ModRows
-            expanded={expanded}
-            mods={mods}
-            onExpand={(index?: number) => setExpanded(index)}
-            onSelectOne={onSelectOne}
-            selected={selected}
-          />
+          {mods.length ? (
+            <ModRows
+              expanded={expanded}
+              mods={mods}
+              onExpand={(index?: number) => setExpanded(index)}
+              onSelectOne={onSelectOne}
+              selected={selected}
+            />
+          ) : (
+            <NoModsFound />
+          )}
         </TableBody>
       </Table>
     </TableContainer>
