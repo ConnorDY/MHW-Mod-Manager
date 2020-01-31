@@ -32,6 +32,11 @@ $color-green: #008000;
     background-color: $color-pink;
   }
 
+  // disabled
+  .MuiButton-contained.Mui-disabled {
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+
   /* Table */
   #mods-table-container {
     // header
@@ -95,6 +100,13 @@ $color-green: #008000;
   &.theme-dark {
     color: $color-white;
     background-color: $color-black;
+
+    /* Buttons */
+
+    // disabled
+    .MuiButton-contained.Mui-disabled {
+      background-color: rgba(255, 255, 255, 0.22);
+    }
 
     /* Table */
     #mods-table-container {
