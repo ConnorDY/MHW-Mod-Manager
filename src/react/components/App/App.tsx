@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Grid, CircularProgress } from '@material-ui/core';
-import { Refresh as RefreshIcon } from '@material-ui/icons';
+import {
+  AddCircleOutline as ActivateIcon,
+  RemoveCircleOutline as DeactivateIcon,
+  Refresh as RefreshIcon
+} from '@material-ui/icons';
 
 import ModsTable from '../ModsTable';
 import {
@@ -9,11 +13,14 @@ import {
   getGameDirectory
 } from '../../directories';
 import { readZips, activateMod, deactivateMod } from '../../mods';
+import Config from '../../Config';
 import Mod from '../../types/Mod';
 
 import './App.scss';
 
 function App() {
+  const { darkMode } = Config.getConfig();
+
   const [activating, setActivating] = useState(false);
   const [deactivating, setDeactivating] = useState(false);
   const [gameDir, setGameDir] = useState<string>();
@@ -128,7 +135,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div id="app" className={darkMode ? 'theme-dark' : undefined}>
       {/* Toolbar */}
       <Grid container id="toolbar">
         <Grid item>
@@ -147,7 +154,14 @@ function App() {
             onClick={onActivate}
             variant="contained"
           >
-            {activating ? <CircularProgress /> : 'Activate'}
+            {activating ? (
+              <CircularProgress />
+            ) : (
+              <>
+                <ActivateIcon />
+                <span className="buttonText">Activate</span>
+              </>
+            )}
           </Button>
 
           <Button
@@ -156,7 +170,14 @@ function App() {
             onClick={onDeactivate}
             variant="contained"
           >
-            {deactivating ? <CircularProgress /> : 'Deactivate'}
+            {deactivating ? (
+              <CircularProgress />
+            ) : (
+              <>
+                <DeactivateIcon />
+                <span className="buttonText">Deactivate</span>
+              </>
+            )}
           </Button>
         </Grid>
 
@@ -180,7 +201,7 @@ function App() {
           />
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 }
 

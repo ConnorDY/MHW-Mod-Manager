@@ -4,6 +4,7 @@ const configPath = path.join(cwd, 'config.json');
 
 interface ConfigType {
   binPath?: string;
+  darkMode?: boolean;
   modsPath?: string;
 }
 

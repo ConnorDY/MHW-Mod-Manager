@@ -1,0 +1,151 @@
+$color-white: #fff;
+$color-black: #000;
+
+$color-grey: #e0e0e0;
+$color-light-grey: #fafafa;
+$color-dark-grey: #0f0f0f;
+$color-mid-gray: #212121;
+
+$color-indigo: #3f51b5;
+$color-pink: #f50057;
+$color-green: #008000;
+
+#app {
+  /**
+   * Default Theme
+   */
+  color: $color-black;
+  background-color: $color-white;
+
+  /* Buttons */
+  .MuiButton-contained {
+    color: $color-white;
+  }
+
+  // primary
+  .MuiButton-containedPrimary {
+    background-color: $color-indigo;
+  }
+
+  // secondary
+  .MuiButton-containedSecondary {
+    background-color: $color-pink;
+  }
+
+  /* Table */
+  #mods-table-container {
+    // header
+    .MuiTableCell-stickyHeader {
+      color: $color-dark-grey;
+      background-color: $color-light-grey;
+
+      // active/hover sort label
+      .MuiTableSortLabel-active,
+      .MuiTableSortLabel-active svg,
+      .MuiTableSortLabel-root:hover {
+        color: $color-black;
+      }
+    }
+
+    // rows
+    tr {
+      background-color: $color-light-grey;
+
+      &:nth-child(4n + 1),
+      &:nth-child(4n + 2) {
+        background-color: $color-white;
+      }
+
+      td,
+      th,
+      .MuiTableSortLabel {
+        color: $color-black;
+        border-bottom-color: $color-grey;
+      }
+    }
+
+    // checkbox
+    .MuiCheckbox-colorSecondary {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .MuiCheckbox-colorSecondary.Mui-checked,
+    .MuiCheckbox-indeterminate {
+      color: $color-pink;
+    }
+
+    // active check mark
+    .cell-active > svg {
+      color: $color-green;
+    }
+
+    // expand/collapse icon
+    .cell-expand > button {
+      color: $color-black;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+
+  /**
+   * Dark Theme
+   */
+  &.theme-dark {
+    color: $color-white;
+    background-color: $color-black;
+
+    /* Table */
+    #mods-table-container {
+      // header
+      .MuiTableCell-stickyHeader {
+        color: $color-light-grey;
+        background-color: $color-dark-grey;
+
+        // active/hover sort label
+        .MuiTableSortLabel-active,
+        .MuiTableSortLabel-active svg,
+        .MuiTableSortLabel-root:hover {
+          color: $color-white;
+        }
+      }
+
+      // rows
+      tr {
+        background-color: $color-dark-grey;
+
+        &:nth-child(4n + 1),
+        &:nth-child(4n + 2) {
+          background-color: $color-black;
+        }
+
+        td,
+        th,
+        .MuiTableSortLabel {
+          color: $color-white;
+          border-bottom-color: $color-mid-gray;
+        }
+      }
+
+      // checkbox
+      .MuiCheckbox-colorSecondary {
+        color: rgba(255, 255, 255, 0.54);
+      }
+
+      .MuiCheckbox-colorSecondary.Mui-checked,
+      .MuiCheckbox-indeterminate {
+        color: $color-pink;
+      }
+
+      // expand/collapse icon
+      .cell-expand > button {
+        color: $color-white;
+
+        &:hover {
+          background-color: rgba(2555, 255, 255, 0.08);
+        }
+      }
+    }
+  }
+}

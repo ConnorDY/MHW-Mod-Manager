@@ -1,14 +1,5 @@
 #mods-table-container {
-  // rows
-  tr {
-    background-color: #fafafa;
-
-    &:nth-child(4n + 1),
-    &:nth-child(4n + 2) {
-      background-color: #fff;
-    }
-  }
-
+  // expanded row
   .mod-row.expanded > td {
     border-bottom: none;
   }
@@ -17,7 +8,6 @@
   .cell-active > svg {
     display: block;
     margin: auto;
-    color: green;
   }
 
   .cell-expand > svg {
