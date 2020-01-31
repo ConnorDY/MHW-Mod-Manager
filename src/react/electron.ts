@@ -1,4 +1,4 @@
-const electron = window.require('electron');
+const electron: typeof Electron = window.require('electron');
 
 const cwd: string = electron.remote.process.cwd();
 const dialog = electron.remote.dialog;
