@@ -19,11 +19,11 @@ The configuration file for this app can be found at: `C:/Users/<UserName>/AppDat
 
 The following configuration options are available:
 
-| Option   |  Type   |                    Default                    |                    Description                    |
-| -------- | :-----: | :-------------------------------------------: | :-----------------------------------------------: |
-| binPath  | String  |                                               | Location of MonsterHunterWorld.exe on your system |
-| darkMode | Boolean |                    `false`                    |   If `true`, the app uses a dark color scheme.    |
-| modsPath | String  | `AppData/Local/Programs/mhw-mod-manager/mods` |          Location of your mods Zip files          |
+| Option   |  Type   |                              Default                              |                    Description                    |
+| -------- | :-----: | :---------------------------------------------------------------: | :-----------------------------------------------: |
+| binPath  | String  |                                                                   | Location of MonsterHunterWorld.exe on your system |
+| darkMode | Boolean |                              `false`                              |   If `true`, the app uses a dark color scheme.    |
+| modsPath | String  | `C:/Users/<UserName>/AppData/Local/Programs/mhw-mod-manager/mods` |          Location of your mods Zip files          |
 
 ## Screenshots
 
