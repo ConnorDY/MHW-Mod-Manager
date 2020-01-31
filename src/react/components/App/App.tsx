@@ -128,12 +128,12 @@ function App() {
   }
 
   async function onFileDrop(event: DragEvent) {
+    if (!event.dataTransfer || !event.dataTransfer.files.length) return;
+
     setCopying(true);
-
-    if (!event.dataTransfer || !event.dataTransfer.files) return;
     await addMods(event.dataTransfer.files);
-
     setCopying(false);
+
     loadMods();
   }
 
@@ -215,7 +215,7 @@ function App() {
       </Grid>
 
       {/* Drag and Drop */}
-      <DragAndDropOverlay onDrop={onFileDrop} />
+      <DragAndDropOverlay onFileDrop={onFileDrop} />
     </div>
   );
 }
