@@ -7,3 +7,5 @@ export default interface Mod {
   name: string;
   zip: JSZip;
 }
+
+export const zipRegex = /^.*\.(zip)$/;

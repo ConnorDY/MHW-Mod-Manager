@@ -2,7 +2,7 @@ import { fs, path, JSZip } from './electron';
 import { getGameDirectory } from './directories';
 import Config from './Config';
 import File from './types/File';
-import Mod from './types/Mod';
+import Mod, { zipRegex } from './types/Mod';
 
 const { readFile } = fs.promises;
 
@@ -11,9 +11,7 @@ export async function readZips(): Promise<Mod[]> {
 
   // get a list of supported files from the mods folder
   const items: string[] = fs.readdirSync(modsPath);
-  const zipPaths = items.filter((item) =>
-    /^.*\.(zip)$/.test(item.toLowerCase())
-  );
+  const zipPaths = items.filter((item) => zipRegex.test(item.toLowerCase()));
 
   const gameDir = getGameDirectory();
   const mods: Mod[] = [];
