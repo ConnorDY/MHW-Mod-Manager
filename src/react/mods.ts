@@ -12,7 +12,7 @@ export async function readZips(): Promise<Mod[]> {
   // get a list of supported files from the mods folder
   const items: string[] = fs.readdirSync(modsPath);
   const zipPaths = items.filter((item) =>
-    /^.*\.(zip|rar|7z)$/.test(item.toLowerCase())
+    /^.*\.(zip)$/.test(item.toLowerCase())
   );
 
   const gameDir = getGameDirectory();
