@@ -37,16 +37,24 @@ export default function ModsTable({
 
   const headerCells = [
     {
+      align: 'center',
       key: 'active',
       text: 'Active?'
     },
     {
+      align: 'left',
       key: 'filename',
       text: 'Filename'
     },
     {
+      align: 'center',
       key: 'num-files',
       text: '# of Files'
+    },
+    {
+      align: 'center',
+      key: 'size',
+      text: 'Size'
     }
   ];
 
@@ -76,8 +84,9 @@ export default function ModsTable({
               />
             </TableCell>
 
-            {headerCells.map(({ key, text }) => (
+            {headerCells.map(({ align, key, text }) => (
               <TableCell
+                align={align as any}
                 className={`cell-header-${key}`}
                 key={key}
                 sortDirection={

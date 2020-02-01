@@ -19,3 +19,18 @@ export function createClassString(...classes: string[]): string {
     .filter((c) => c)
     .join(' ');
 }
+
+export function formatSizeString(size: number): string {
+  const kb = size / 1000;
+  let units = 'KB';
+  let num = kb;
+
+  if (kb > 9999) {
+    units = 'MB';
+    num = kb / 1000;
+  }
+
+  return `${num.toLocaleString('en', {
+    maximumFractionDigits: 2
+  })} ${units}`;
+}

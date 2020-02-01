@@ -42,6 +42,7 @@ export async function readZips(): Promise<Mod[]> {
       active: files.every((file) => file.exists),
       files,
       name: zipPath,
+      size: data.byteLength,
       zip
     });
   }
@@ -65,12 +66,16 @@ export function sortModsByColumn(
 
     case 'num-files':
       mods.sort((a, b) =>
-        a.files.length === b.files.length
-          ? 0
-          : a.files.length > b.files.length
+        a.files.length > b.files.length
           ? 1
-          : -1
+          : a.files.length < b.files.length
+          ? -1
+          : 0
       );
+      break;
+
+    case 'size':
+      mods.sort((a, b) => (a.size > b.size ? 1 : a.size < b.size ? -1 : 0));
       break;
   }
 

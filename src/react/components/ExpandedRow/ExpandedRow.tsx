@@ -29,7 +29,7 @@ export default function ExpandedRow({
 
         <TableCell className="files-label">Files:</TableCell>
 
-        <TableCell className="files-list" colSpan={3}>
+        <TableCell className="files-list" colSpan={4}>
           <ul>
             {files.map(({ exists, path }, fileIndex) => (
               <li key={`file-${zipIndex}-${fileIndex}`}>

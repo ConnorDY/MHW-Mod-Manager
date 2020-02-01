@@ -8,7 +8,7 @@ import {
 
 import ExpandedRow from '../ExpandedRow';
 import Mod from '../../types/Mod';
-import { createClassString } from '../../utils';
+import { createClassString, formatSizeString } from '../../utils';
 
 import './ModRows.scss';
 
@@ -27,7 +27,7 @@ export default function ModRows({
 }) {
   return (
     <>
-      {mods.map(({ active, files, name }, modIndex) => {
+      {mods.map(({ active, files, name, size }, modIndex) => {
         const isExpanded = expanded === name;
 
         return (
@@ -55,6 +55,10 @@ export default function ModRows({
 
               <TableCell align="center" className="cell-num-files">
                 {files.length}
+              </TableCell>
+
+              <TableCell align="center" className="cell-num-files">
+                {formatSizeString(size)}
               </TableCell>
 
               <TableCell className="cell-expand">
