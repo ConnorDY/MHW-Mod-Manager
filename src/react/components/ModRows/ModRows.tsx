@@ -19,8 +19,8 @@ export default function ModRows({
   selected,
   mods
 }: {
-  expanded: number | undefined;
-  onExpand: (index?: number) => void;
+  expanded: string;
+  onExpand: (fileName: string) => void;
   onSelectOne: (index: number) => void;
   selected: Set<number>;
   mods: Mod[];
@@ -28,7 +28,7 @@ export default function ModRows({
   return (
     <>
       {mods.map(({ active, files, name }, modIndex) => {
-        const isExpanded = expanded === modIndex;
+        const isExpanded = expanded === name;
 
         return (
           <React.Fragment key={`zip-${modIndex}`}>
@@ -59,11 +59,11 @@ export default function ModRows({
 
               <TableCell className="cell-expand">
                 {isExpanded ? (
-                  <IconButton onClick={() => onExpand()}>
+                  <IconButton onClick={() => onExpand('')}>
                     <ExpandLessIcon />
                   </IconButton>
                 ) : (
-                  <IconButton onClick={() => onExpand(modIndex)}>
+                  <IconButton onClick={() => onExpand(name)}>
                     <ExpandMoreIcon />
                   </IconButton>
                 )}

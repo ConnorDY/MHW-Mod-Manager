@@ -51,6 +51,34 @@ export async function readZips(): Promise<Mod[]> {
   return mods;
 }
 
+export function sortModsByColumn(
+  mods: Mod[],
+  column: string,
+  dir: boolean
+): void {
+  switch (column) {
+    case 'active':
+      mods.sort((a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1));
+      break;
+
+    case 'filename':
+      mods.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+
+    case 'num-files':
+      mods.sort((a, b) =>
+        a.files.length === b.files.length
+          ? 0
+          : a.files.length > b.files.length
+          ? 1
+          : -1
+      );
+      break;
+  }
+
+  if (!dir) mods.reverse();
+}
+
 export async function activateMod(mod: Mod): Promise<void> {
   const gameDir = getGameDirectory();
 

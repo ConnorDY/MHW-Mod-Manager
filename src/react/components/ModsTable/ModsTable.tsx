@@ -29,8 +29,8 @@ export default function ModsTable({
   sortMods: (column: string, dir: boolean) => void;
   mods: Mod[];
 }) {
-  const [expanded, setExpanded] = useState<number | undefined>();
-  const [orderBy, setOrderBy] = useState<string>('filename');
+  const [expanded, setExpanded] = useState('');
+  const [orderBy, setOrderBy] = useState('filename');
   const [sortDir, setSortDir] = useState(true);
 
   const headerCells = [
@@ -110,7 +110,7 @@ export default function ModsTable({
             <ModRows
               expanded={expanded}
               mods={mods}
-              onExpand={(index?: number) => setExpanded(index)}
+              onExpand={setExpanded}
               onSelectOne={onSelectOne}
               selected={selected}
             />

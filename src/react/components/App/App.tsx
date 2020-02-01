@@ -13,7 +13,13 @@ import {
   locateGameBinary,
   getGameDirectory
 } from '../../directories';
-import { activateMod, deactivateMod, addMods, readZips } from '../../mods';
+import {
+  activateMod,
+  deactivateMod,
+  addMods,
+  readZips,
+  sortModsByColumn
+} from '../../mods';
 import Config from '../../Config';
 import Mod from '../../types/Mod';
 
@@ -104,31 +110,11 @@ function App() {
   }
 
   function sortMods(column: string, dir: boolean): void {
-    switch (column) {
-      case 'active':
-        mods.sort((a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1));
-        break;
-
-      case 'filename':
-        mods.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-
-      case 'num-files':
-        mods.sort((a, b) =>
-          a.files.length === b.files.length
-            ? 0
-            : a.files.length > b.files.length
-            ? 1
-            : -1
-        );
-        break;
-    }
-
-    if (!dir) mods.reverse();
+    sortModsByColumn(mods, column, dir);
     setMods(mods);
   }
 
-  async function onFileDrop(files: FileList) {
+  async function onFileDrop(files: FileList): Promise<void> {
     setCopying(true);
     await addMods(files);
     setCopying(false);
