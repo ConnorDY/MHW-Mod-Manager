@@ -7,7 +7,7 @@ import Mod, { zipRegex } from './types/Mod';
 const { readFile } = fs.promises;
 
 export async function readZips(): Promise<Mod[]> {
-  const { modsPath } = Config.getConfig();
+  const modsPath = Config.getConfig().modsPath as string;
 
   // get a list of supported files from the mods folder
   const items: string[] = fs.readdirSync(modsPath);
@@ -75,7 +75,7 @@ export function deactivateMod(mod: Mod): void {
 }
 
 export async function addMods(files: FileList): Promise<void> {
-  const { modsPath } = Config.getConfig();
+  const modsPath = Config.getConfig().modsPath as string;
 
   for (const file of files) {
     await fs.copyFile(file.path, path.join(modsPath, file.name));
