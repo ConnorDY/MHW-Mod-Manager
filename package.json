@@ -41,7 +41,10 @@
     "mac": {
       "category": "public.app-category.utilities"
     },
-    "productName": "MHW Mod Manager"
+    "productName": "MHW Mod Manager",
+    "win": {
+      "target": "zip"
+    }
   },
   "dependencies": {
     "@material-ui/core": "^4.8.3",
