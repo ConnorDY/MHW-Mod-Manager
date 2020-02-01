@@ -2,7 +2,7 @@ import { dialog, electron } from './electron';
 import Alert from './types/Alert';
 
 export function closeApp(): void {
-  electron.remote.getCurrentWindow().close();
+  electron.app.quit();
 }
 
 export function showAlert(message: string, type = Alert.Info): void {

@@ -20,6 +20,7 @@ import {
   readZips,
   sortModsByColumn
 } from '../../mods';
+import { electron } from '../../electron';
 import Config from '../../Config';
 import Mod from '../../types/Mod';
 
@@ -128,6 +129,15 @@ function App() {
 
   // on app start
   useEffect(() => {
+    // set window title
+    electron
+      .getCurrentWindow()
+      .setTitle(
+        `MHW Mod Manager (${
+          electron.app.isPackaged ? electron.app.getVersion() : 'DEV'
+        })`
+      );
+
     setModsDir(getModsDirectory());
 
     locateGameBinary().then(() => {
