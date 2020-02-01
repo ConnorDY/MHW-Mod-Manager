@@ -113,8 +113,8 @@ function App() {
 
   function sortMods(column: string, dir: boolean, _mods = mods): void {
     sortModsByColumn(_mods, column, dir);
-    setOrderBy(column);
-    setSortDir(dir);
+    if (orderBy !== column) setOrderBy(column);
+    if (sortDir !== dir) setSortDir(dir);
     setMods(_mods);
   }
 
