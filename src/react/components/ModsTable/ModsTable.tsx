@@ -20,18 +20,20 @@ export default function ModsTable({
   mods,
   onSelectAll,
   onSelectOne,
+  orderBy,
   selected,
+  sortDir,
   sortMods
 }: {
   onSelectAll: () => void;
   onSelectOne: (index: number) => void;
+  orderBy: string;
   selected: Set<number>;
+  sortDir: boolean;
   sortMods: (column: string, dir: boolean) => void;
   mods: Mod[];
 }) {
   const [expanded, setExpanded] = useState('');
-  const [orderBy, setOrderBy] = useState('filename');
-  const [sortDir, setSortDir] = useState(true);
 
   const headerCells = [
     {
@@ -52,14 +54,8 @@ export default function ModsTable({
     return (event: MouseEvent) => {
       event.preventDefault();
 
-      if (orderBy !== key) {
-        sortMods(key, true);
-        setOrderBy(key);
-        setSortDir(true);
-      } else {
-        sortMods(key, !sortDir);
-        setSortDir(!sortDir);
-      }
+      if (orderBy !== key) sortMods(key, true);
+      else sortMods(key, !sortDir);
     };
   }
 

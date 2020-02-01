@@ -46,8 +46,6 @@ export async function readZips(): Promise<Mod[]> {
     });
   }
 
-  mods.sort((a, b) => a.name.localeCompare(b.name));
-
   return mods;
 }
 

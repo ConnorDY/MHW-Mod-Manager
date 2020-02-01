@@ -34,10 +34,12 @@ function App() {
   const [gameDir, setGameDir] = useState<string>();
   const [mods, setMods] = useState<Mod[]>([]);
   const [modsDir, setModsDir] = useState<string>();
+  const [orderBy, setOrderBy] = useState('filename');
+  const [sortDir, setSortDir] = useState(true);
   const [selected, setSelected] = useState(new Set<number>());
 
   async function loadMods(): Promise<void> {
-    setMods(await readZips());
+    sortMods(orderBy, sortDir, await readZips());
   }
 
   function updateSelected(): void {
@@ -109,9 +111,11 @@ function App() {
     setDeactivating(false);
   }
 
-  function sortMods(column: string, dir: boolean): void {
-    sortModsByColumn(mods, column, dir);
-    setMods(mods);
+  function sortMods(column: string, dir: boolean, _mods = mods): void {
+    sortModsByColumn(_mods, column, dir);
+    setOrderBy(column);
+    setSortDir(dir);
+    setMods(_mods);
   }
 
   async function onFileDrop(files: FileList): Promise<void> {
@@ -130,6 +134,8 @@ function App() {
       setGameDir(getGameDirectory());
       loadMods();
     });
+
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -201,7 +207,9 @@ function App() {
             mods={mods}
             onSelectAll={onSelectAll}
             onSelectOne={onSelectOne}
+            orderBy={orderBy}
             selected={selected}
+            sortDir={sortDir}
             sortMods={sortMods}
           />
         </Grid>
