@@ -3,7 +3,7 @@ import Config from './Config';
 import Alert from './types/Alert';
 import { closeApp, showAlert } from './utils';
 
-export function getModsDirectory(): void {
+export function getModsDirectory(): string {
   // try to get modsPath from config
   const { modsPath } = Config.getConfig();
 
@@ -15,18 +15,19 @@ export function getModsDirectory(): void {
 
     // write modsPath to config
     Config.writeConfig({ modsPath: defaultModsPath });
-    return;
+    return defaultModsPath;
   }
 
   // close app if the mods directory does not exist
   if (!fs.existsSync(modsPath)) {
     showAlert('Mods directory not found.', Alert.Error);
     closeApp();
-    return;
+    return '';
   }
 
   // success
   console.log('Found mods directory.');
+  return modsPath;
 }
 
 export function getGameDirectory(): string {

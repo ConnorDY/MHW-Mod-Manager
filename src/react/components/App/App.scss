@@ -39,13 +39,16 @@ body,
     }
   }
 
-  .game-dir {
+  .directory-locations {
     display: table-cell;
     margin-right: 4px;
     float: right;
-    font-size: 12px;
 
-    > .game-dir-label {
+    font-size: 12px;
+    text-align: right;
+
+    .game-dir-label,
+    .mods-dir-label {
       font-weight: bold;
     }
   }

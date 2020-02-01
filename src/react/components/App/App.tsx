@@ -26,8 +26,9 @@ function App() {
   const [copying, setCopying] = useState(false);
   const [deactivating, setDeactivating] = useState(false);
   const [gameDir, setGameDir] = useState<string>();
-  const [selected, setSelected] = useState(new Set<number>());
   const [mods, setMods] = useState<Mod[]>([]);
+  const [modsDir, setModsDir] = useState<string>();
+  const [selected, setSelected] = useState(new Set<number>());
 
   async function loadMods(): Promise<void> {
     setMods(await readZips());
@@ -137,7 +138,8 @@ function App() {
 
   // on app start
   useEffect(() => {
-    getModsDirectory();
+    setModsDir(getModsDirectory());
+
     locateGameBinary().then(() => {
       setGameDir(getGameDirectory());
       loadMods();
@@ -192,9 +194,16 @@ function App() {
         </Grid>
 
         <Grid item>
-          <div className="game-dir">
-            <span className="game-dir-label">Game Directory:</span>{' '}
-            {gameDir ? gameDir.replace(/\\/g, '/') : ''}
+          <div className="directory-locations">
+            <div className="game-dir">
+              <span className="game-dir-label">Game Directory:</span>{' '}
+              {gameDir ? gameDir.replace(/\\/g, '/') : ''}
+            </div>
+
+            <div className="mods-dir">
+              <span className="mods-dir-label">Mods Directory:</span>{' '}
+              {modsDir ? `${modsDir.replace(/\\/g, '/')}/` : ''}
+            </div>
           </div>
         </Grid>
       </Grid>
