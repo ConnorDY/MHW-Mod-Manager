@@ -54,11 +54,11 @@ export default function ModRows({
               <TableCell className="cell-filename">{name}</TableCell>
 
               <TableCell align="center" className="cell-num-files">
-                {files.length}
+                {formatSizeString(size)}
               </TableCell>
 
               <TableCell align="center" className="cell-num-files">
-                {formatSizeString(size)}
+                {files.length}
               </TableCell>
 
               <TableCell className="cell-expand">

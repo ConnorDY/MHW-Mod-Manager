@@ -48,13 +48,13 @@ export default function ModsTable({
     },
     {
       align: 'center',
-      key: 'num-files',
-      text: '# of Files'
+      key: 'size',
+      text: 'Size'
     },
     {
       align: 'center',
-      key: 'size',
-      text: 'Size'
+      key: 'num-files',
+      text: '# of Files'
     }
   ];
 
