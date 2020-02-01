@@ -15,15 +15,17 @@ Coming soon:
 
 ## Configuration
 
-The configuration file for this app can be found at: `C:/Users/<UserName>/AppData/Local/Programs/mhw-mod-manager/config.json`
+If using the installer, the app will be installed at: `C:/Users/<UserName>/AppData/Local/Programs/mhw-mod-manager`.
+
+The configuration file for this app can be found at: `<Install-Location>/config.json`.
 
 The following configuration options are available:
 
-| Option   |  Type   |                              Default                              |                    Description                    |
-| -------- | :-----: | :---------------------------------------------------------------: | :-----------------------------------------------: |
-| binPath  | String  |                                                                   | Location of MonsterHunterWorld.exe on your system |
-| darkMode | Boolean |                              `false`                              |   If `true`, the app uses a dark color scheme.    |
-| modsPath | String  | `C:/Users/<UserName>/AppData/Local/Programs/mhw-mod-manager/mods` |          Location of your mods Zip files          |
+| Option   |  Type   |                  Default                  |                    Description                    |
+| -------- | :-----: | :---------------------------------------: | :-----------------------------------------------: |
+| binPath  | String  |                                           | Location of MonsterHunterWorld.exe on your system |
+| darkMode | Boolean |                  `false`                  |   If `true`, the app uses a dark color scheme.    |
+| modsPath | String  | `<Install-Location>/mhw-mod-manager/mods` |          Location of your mods Zip files          |
 
 ## Screenshots
 
