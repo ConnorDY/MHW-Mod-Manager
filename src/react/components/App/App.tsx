@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Grid, CircularProgress } from '@material-ui/core';
+import { Button, CircularProgress, Grid, IconButton } from '@material-ui/core';
 import {
   AddCircleOutline as ActivateIcon,
   RemoveCircleOutline as DeactivateIcon,
+  Brightness4 as ToggleDarkModeIcon,
   Refresh as RefreshIcon
 } from '@material-ui/icons';
 
@@ -27,10 +28,9 @@ import Mod from '../../types/Mod';
 import './App.scss';
 
 function App() {
-  const { darkMode } = Config.getConfig();
-
   const [activating, setActivating] = useState(false);
   const [copying, setCopying] = useState(false);
+  const [darkMode, setDarkMode] = useState(Config.getConfig().darkMode);
   const [deactivating, setDeactivating] = useState(false);
   const [gameDir, setGameDir] = useState<string>();
   const [mods, setMods] = useState<Mod[]>([]);
@@ -127,6 +127,11 @@ function App() {
     loadMods();
   }
 
+  function toggleDarkMode(): void {
+    Config.writeConfig({ darkMode: !darkMode });
+    setDarkMode(!darkMode);
+  }
+
   // on app start
   useEffect(() => {
     // set window title
@@ -207,6 +212,12 @@ function App() {
               {modsDir ? `${modsDir.replace(/\\/g, '/')}/` : ''}
             </div>
           </div>
+        </Grid>
+
+        <Grid item className="toggle-dark-mode">
+          <IconButton onClick={toggleDarkMode}>
+            <ToggleDarkModeIcon />
+          </IconButton>
         </Grid>
       </Grid>
 
