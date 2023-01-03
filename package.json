@@ -56,7 +56,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-file-drop": "^0.2.8",
-    "react-scripts": "3.3.0",
+    "react-scripts": "5.0.1",
     "react-transition-group": "^4.3.0",
     "typeface-roboto": "0.0.75"
   },
@@ -75,8 +75,8 @@
     "electron": "^15.5.5",
     "electron-builder": "^22.3.2",
     "prettier": "^1.19.1",
-    "source-map-loader": "^0.2.4",
-    "ts-loader": "^6.2.1",
+    "source-map-loader": "^4.0.1",
+    "ts-loader": "^9.4.2",
     "typescript": "^3.7.5"
   },
   "browserslist": {
